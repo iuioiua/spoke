@@ -1,6 +1,8 @@
 import createClient from "openapi-fetch";
 import type { paths } from "./types.d.ts";
 
+export * from "./types.d.ts";
+
 /**
  * Create a Spoke REST API client.
  *
