@@ -723,7 +723,7 @@ export interface components {
       title: string;
       starts: components["schemas"]["dateSchema"];
       /** @description The depot ID of the plan, in the format depots/<id> */
-      depot: components["schemas"]["driverSchema"]["depots"]["items"] | null;
+      depot: components["schemas"]["depotSchema"]["id"] | null;
       /** @description Whether the plan has been distributed. */
       distributed: boolean;
       /** @description Whether the plan is writable using the normal Plan APIs. If this is false, you will need to use the [Live Plan APIs](/api#tag/Live-Plans) to edit the plan. Any plan created before 2023-04-01 is not writable. */
