@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "build": "deno x openapi-typescript https://developer.dispatch.spoke.com/openapi.json -o ./types.d.ts"
+  },
+  "imports": {
+    "openapi-fetch": "npm:openapi-fetch@^0.15.0"
+  },
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true
+  }
+}
