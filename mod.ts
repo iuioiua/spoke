@@ -1,7 +1,5 @@
-import createClient from "openapi-fetch";
+import createClient, { type Client } from "openapi-fetch";
 import type { paths } from "./types.d.ts";
-
-export * from "./types.d.ts";
 
 /**
  * Create a Spoke REST API client.
@@ -25,12 +23,15 @@ export * from "./types.d.ts";
  */
 export function createSpokeClient(
   apiKey: string,
-): ReturnType<typeof createClient<paths>> {
-  return createClient<paths>({
+): Client<paths, `${string}/${string}`> {
+  const spokeClient = createClient<paths>({
     baseUrl: "https://api.getcircuit.com/public/v0.2b",
-    fetch: (request) => {
+  });
+  spokeClient.use({
+    onRequest({ request }) {
       request.headers.set("Authorization", `Bearer ${apiKey}`);
-      return fetch(request);
+      return request;
     },
   });
+  return spokeClient;
 }
