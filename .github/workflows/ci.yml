@@ -19,5 +19,5 @@ jobs:
         with:
           cache: true
 
-      - name: Check formatting, linting and types
+      - name: Check formatting, linting and types and run tests
         run: deno task ok
