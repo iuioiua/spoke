@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "build": "deno x openapi-typescript ./openapi.json -o ./types.d.ts"
+    "build": "deno x openapi-typescript ./openapi.json -o ./types.d.ts",
+    "ok": "deno fmt --check && deno lint && deno check"
   },
   "imports": {
     "openapi-fetch": "npm:openapi-fetch@^0.15.0"
