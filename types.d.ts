@@ -583,6 +583,13 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    routeIdSchema: string;
+    depotIdSchema: string;
+    driverIdSchema: string;
+    planIdSchema: string;
+    stopIdSchema: string;
+    unassignedStopIdSchema: string;
+    operationIdSchema: string;
     /** @description A date. */
     dateSchema: {
       /** @description The day of the date. */
@@ -692,7 +699,7 @@ export interface components {
       /** @description The number of stops in the route. */
       stopCount: number;
       /** @description The id of the driver. */
-      driver: string | null;
+      driver: components["schemas"]["driverIdSchema"] | null;
       /** @description The state of the route. */
       state: {
         /** @description Whether the route is completed. */
@@ -713,7 +720,7 @@ export interface components {
         startedAt: number | null;
       } | null;
       /** @description The id of the related plan. */
-      plan: string | null;
+      plan: components["schemas"]["planIdSchema"] | null;
     };
     /** @description A plan. */
     planSchema: {
@@ -723,7 +730,7 @@ export interface components {
       title: string;
       starts: components["schemas"]["dateSchema"];
       /** @description The depot ID of the plan, in the format depots/<id> */
-      depot: components["schemas"]["driverSchema"]["depots"]["items"] | null;
+      depot: components["schemas"]["depotIdSchema"] | null;
       /** @description Whether the plan has been distributed. */
       distributed: boolean;
       /** @description Whether the plan is writable using the normal Plan APIs. If this is false, you will need to use the [Live Plan APIs](/api#tag/Live-Plans) to edit the plan. Any plan created before 2023-04-01 is not writable. */
@@ -735,7 +742,7 @@ export interface components {
       /** @description The driver IDs of the plan, in the format drivers/<id>. */
       drivers: components["schemas"]["driverSchema"][];
       /** @description The route IDs of the plan, in the format routes/<id>. */
-      routes: string[];
+      routes: components["schemas"]["routeIdSchema"][];
     };
     /** @description A depot. */
     depotSchema: {
