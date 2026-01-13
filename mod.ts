@@ -1,4 +1,4 @@
-import createClient, { type Client } from "openapi-fetch";
+import createClient from "openapi-fetch";
 import type { paths } from "./types.d.ts";
 
 export * from "./types.d.ts";
@@ -25,7 +25,7 @@ export * from "./types.d.ts";
  */
 export function createSpokeClient(
   apiKey: string,
-): Client<paths, `${string}/${string}`> {
+): ReturnType<typeof createClient<paths>> {
   const spokeClient = createClient<paths>({
     baseUrl: "https://api.getcircuit.com/public/v0.2b",
   });
