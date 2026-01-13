@@ -1,4 +1,7 @@
 {
+  "name": "@incapost/spoke",
+  "version": "0.0.1",
+  "exports": "./mod.ts",
   "tasks": {
     "build": "deno x openapi-typescript ./openapi.json -o ./types.d.ts",
     "ok": "deno fmt --check && deno lint && deno check"
