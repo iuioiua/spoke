@@ -1,7 +1,8 @@
 {
-  "name": "@iuioiua/spoke",
-  "version": "0.0.1",
+  "name": "@incapost/spoke",
+  "version": "0.1.0",
   "exports": "./mod.ts",
+  "license": "MIT",
   "tasks": {
     "build": "deno x openapi-typescript https://developer.dispatch.spoke.com/openapi.json -o ./types.d.ts",
     "ok": "deno fmt --check && deno lint && deno check && deno test"
