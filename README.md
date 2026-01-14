@@ -1,5 +1,8 @@
 # spoke
 
+[![JSR](https://jsr.io/badges/@incapost/spoke)](https://jsr.io/@incapost/spoke)
+[![CI](https://github.com/iuioiua/spoke/actions/workflows/ci.yml/badge.svg)](https://github.com/iuioiua/spoke/actions/workflows/ci.yml)
+
 Minimal client for the [Spoke REST API](https://developer.dispatch.spoke.com)
 with types. Powered by [`openapi-fetch`](https://openapi-ts.dev/openapi-fetch/).
 Compatible with all JavaScript/TypeScript runtimes and browsers.
