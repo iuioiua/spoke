@@ -9,15 +9,18 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Setup repo
         uses: actions/checkout@v6
-
       - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
           cache: true
-
       - name: Check formatting, linting and types and run tests
         run: deno task ok
+      - name: Publish to JSR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: deno publish
