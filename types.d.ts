@@ -4,8001 +4,7579 @@
  */
 
 export interface paths {
-  "/plans": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List plans */
+        get: operations["listPlans"];
+        put?: never;
+        /** Create a new plan */
+        post: operations["createPlan"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List plans */
-    get: operations["listPlans"];
-    put?: never;
-    /** Create a new plan */
-    post: operations["createPlan"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve a plan
+         * @description Retrieve a plan
+         */
+        get: operations["getPlan"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a plan
+         * @description Delete a plan and related routes. This action cannot be undone and will delete all the releated routes as well, even if the plan is not in a writable state. As this action is not atomic, it is possible that only partial deletion occurs if the endpoint errors out with a 500. In that case it is recommended to retry the request.
+         */
+        delete: operations["deletePlan"];
+        options?: never;
+        head?: never;
+        /**
+         * Update an existing plan
+         * @description Update an existing plan. If the plan `writable` property is false, prefer using the [Live Plans API](#tag/Live-Plans).
+         */
+        patch: operations["updatePlan"];
+        trace?: never;
     };
-    /**
-     * Retrieve a plan
-     * @description Retrieve a plan
-     */
-    get: operations["getPlan"];
-    put?: never;
-    post?: never;
-    /**
-     * Delete a plan
-     * @description Delete a plan and related routes. This action cannot be undone and will delete all the releated routes as well, even if the plan is not in a writable state. As this action is not atomic, it is possible that only partial deletion occurs if the endpoint errors out with a 500. In that case it is recommended to retry the request.
-     */
-    delete: operations["deletePlan"];
-    options?: never;
-    head?: never;
-    /**
-     * Update an existing plan
-     * @description Update an existing plan. If the plan `writable` property is false, prefer using the [Live Plans API](#tag/Live-Plans).
-     */
-    patch: operations["updatePlan"];
-    trace?: never;
-  };
-  "/plans/{planId}:optimize": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}:optimize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Optimize a plan
+         * @description Optimize a plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result.
+         */
+        post: operations["optimizePlan"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Optimize a plan
-     * @description Optimize a plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result.
-     */
-    post: operations["optimizePlan"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}:distribute": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}:distribute": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Distribute a plan
+         * @description Distribute a plan to its drivers. This will send then their routes.
+         */
+        post: operations["distributePlan"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Distribute a plan
-     * @description Distribute a plan to its drivers. This will send then their routes.
-     */
-    post: operations["distributePlan"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}:reoptimize": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}:reoptimize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Re-optimize a plan
+         * @description Re-optimize a plan. This endpoint should be used only after updating a live plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result.
+         */
+        post: operations["reoptimizePlan"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Re-optimize a plan
-     * @description Re-optimize a plan. This endpoint should be used only after updating a live plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result.
-     */
-    post: operations["reoptimizePlan"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}:redistribute": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}:redistribute": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Re-distribute a plan
+         * @description Re-distribute a plan to its drivers. This endpoint should be used only after updating a live plan. This will apply the re-optimization changes and send the drivers their routes.
+         */
+        post: operations["redistributePlan"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Re-distribute a plan
-     * @description Re-distribute a plan to its drivers. This endpoint should be used only after updating a live plan. This will apply the re-optimization changes and send the drivers their routes.
-     */
-    post: operations["redistributePlan"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}:save": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}:save": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Save the plan changes
+         * @description Save the plan changes after re-optimization without distributing it. This endpoint is optional since re-distribute already saves the changes.
+         */
+        post: operations["savePlan"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Save the plan changes
-     * @description Save the plan changes after re-optimization without distributing it. This endpoint is optional since re-distribute already saves the changes.
-     */
-    post: operations["savePlan"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}/stops": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List stops */
+        get: operations["listStops"];
+        put?: never;
+        /**
+         * Create a new stop
+         * @description Create a new stop with the given data. Prefer using the [batch import endpoint](#tag/Stops/operation/importStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results. If the plan is not writable, this will fail, prefer using the [Live Create Stop API](#tag/Live-Stops/operation/createLiveStop) instead.
+         */
+        post: operations["createStop"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List stops */
-    get: operations["listStops"];
-    put?: never;
-    /**
-     * Create a new stop
-     * @description Create a new stop with the given data. Prefer using the [batch import endpoint](#tag/Stops/operation/importStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results. If the plan is not writable, this will fail, prefer using the [Live Create Stop API](#tag/Live-Stops/operation/createLiveStop) instead.
-     */
-    post: operations["createStop"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}/stops:import": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops:import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Batch import stops
+         * @description Batch import stops. The request body must contain an array of stops to import. If the plan is not writable, the request will fail, prefer using the [Import Live Stops API](#tag/Live-Stops/operation/importLiveStops) instead.
+         */
+        post: operations["importStops"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Batch import stops
-     * @description Batch import stops. The request body must contain an array of stops to import. If the plan is not writable, the request will fail, prefer using the [Import Live Stops API](#tag/Live-Stops/operation/importLiveStops) instead.
-     */
-    post: operations["importStops"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}/stops/{stopId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops/{stopId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve a stop
+         * @description Retrieve a stop
+         */
+        get: operations["getStop"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete a stop
+         * @description Delete a stop. This action cannot be undone and will delete all the data associated with the stop. If the plan is not writable, this will fail, prefer using the [Live Delete Stop API](#tag/Live-Stops/operation/deleteLiveStop) instead.
+         */
+        delete: operations["deleteStop"];
+        options?: never;
+        head?: never;
+        /**
+         * Update an existing stop
+         * @description Does not support updating a stop's location, nor the `circuitClientId`. To do so, delete the stop and create a new one. If the plan is not writable, the request will fail, prefer using the [Update Live Stops API](#tag/Live-Stops/operation/updateLiveStop) instead.
+         */
+        patch: operations["updateStop"];
+        trace?: never;
     };
-    /**
-     * Retrieve a stop
-     * @description Retrieve a stop
-     */
-    get: operations["getStop"];
-    put?: never;
-    post?: never;
-    /**
-     * Delete a stop
-     * @description Delete a stop. This action cannot be undone and will delete all the data associated with the stop. If the plan is not writable, this will fail, prefer using the [Live Delete Stop API](#tag/Live-Stops/operation/deleteLiveStop) instead.
-     */
-    delete: operations["deleteStop"];
-    options?: never;
-    head?: never;
-    /**
-     * Update an existing stop
-     * @description Does not support updating a stop's location, nor the `circuitClientId`. To do so, delete the stop and create a new one. If the plan is not writable, the request will fail, prefer using the [Update Live Stops API](#tag/Live-Stops/operation/updateLiveStop) instead.
-     */
-    patch: operations["updateStop"];
-    trace?: never;
-  };
-  "/plans/{planId}/stops:liveCreate": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops:liveCreate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create a new stop
+         * @description Create a new stop with the given data on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. Prefer using the [batch import endpoint](#tag/Stops/operation/importLiveStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results.
+         */
+        post: operations["createLiveStop"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Create a new stop
-     * @description Create a new stop with the given data on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. Prefer using the [batch import endpoint](#tag/Stops/operation/importLiveStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results.
-     */
-    post: operations["createLiveStop"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}/stops/{stopId}:liveUpdate": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops/{stopId}:liveUpdate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Update an existing stop
+         * @description Update a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. It does not support updating a stop's location. To do so, delete the stop and create a new one.
+         */
+        post: operations["updateLiveStop"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Update an existing stop
-     * @description Update a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. It does not support updating a stop's location. To do so, delete the stop and create a new one.
-     */
-    post: operations["updateLiveStop"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}/stops:liveImport": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops:liveImport": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Batch import stops
+         * @description Import stops to live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded.
+         */
+        post: operations["importLiveStops"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Batch import stops
-     * @description Import stops to live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded.
-     */
-    post: operations["importLiveStops"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/plans/{planId}/stops/{stopId}:liveDelete": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/plans/{planId}/stops/{stopId}:liveDelete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Delete a stop
+         * @description Delete a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded.
+         */
+        post: operations["deleteLiveStop"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Delete a stop
-     * @description Delete a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded.
-     */
-    post: operations["deleteLiveStop"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/drivers": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/drivers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Drivers */
+        get: operations["listDrivers"];
+        put?: never;
+        /**
+         * Create a new driver
+         * @description Create a driver with the given data in your team. Prefer using the [batch import endpoint](#operation/importDrivers) for creating multiple drivers at once as it is more efficient, faster.
+         */
+        post: operations["createDriver"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List Drivers */
-    get: operations["listDrivers"];
-    put?: never;
-    /**
-     * Create a new driver
-     * @description Create a member in your team with 'driver' role.
-     */
-    post: operations["createDriver"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/drivers/{driverId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/drivers/{driverId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve a driver */
+        get: operations["getDriver"];
+        put?: never;
+        post?: never;
+        /**
+         * Remove a driver
+         * @description Removes a driver from your team. If the driver also has dashboard access, the driver will only have their "driver" role revoked; thus not being listed among the team drivers, but will keep their dashboard access.
+         */
+        delete: operations["deleteDriver"];
+        options?: never;
+        head?: never;
+        /**
+         * Update a driver
+         * @description Updates a driver from your team. The member must have the "driver" role.
+         */
+        patch: operations["updateDriver"];
+        trace?: never;
     };
-    /** Retrieve a driver */
-    get: operations["getDriver"];
-    put?: never;
-    post?: never;
-    /**
-     * Remove a driver
-     * @description Removes a driver from your team. If the driver also has dashboard access, the driver will only have their "driver" role revoked; thus not being listed among the team drivers, but will keep their dashboard access.
-     */
-    delete: operations["deleteDriver"];
-    options?: never;
-    head?: never;
-    /**
-     * Update a driver
-     * @description Updates a driver from your team. The member must have the "driver" role.
-     */
-    patch: operations["updateDriver"];
-    trace?: never;
-  };
-  "/drivers:import": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/drivers:import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Batch import drivers
+         * @description Creates multiple drivers in your team. The request body must contain an array of drivers to import.
+         */
+        post: operations["importDrivers"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Import multiple drivers
-     * @description Creates multiple members in your team with 'driver' role.
-     */
-    post: operations["importDrivers"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/depots": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/depots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Depots */
+        get: operations["listDepots"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List Depots */
-    get: operations["listDepots"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/depots/{depotId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/depots/{depotId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve a depot */
+        get: operations["getDepot"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Retrieve a depot */
-    get: operations["getDepot"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/routes/{routeId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/routes/{routeId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve a route */
+        get: operations["getRoute"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Retrieve a route */
-    get: operations["getRoute"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/operations/{operationId}:cancel": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/operations/{operationId}:cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Cancel an operation
+         * @description Cancel an operation that is not yet done.
+         */
+        post: operations["cancelOperation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Cancel an operation
-     * @description Cancel an operation that is not yet done.
-     */
-    post: operations["cancelOperation"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/operations/{operationId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/operations/{operationId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieve an operation */
+        get: operations["getOperation"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Retrieve an operation */
-    get: operations["getOperation"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/operations": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/operations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List operations */
+        get: operations["listOperations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List operations */
-    get: operations["listOperations"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/unassignedStops/{unassignedStopId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/unassignedStops/{unassignedStopId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve an unassigned stop
+         * @description Retrieve an unassigned stop
+         */
+        get: operations["getUnassignedStop"];
+        put?: never;
+        post?: never;
+        /**
+         * Delete an unassigned stop
+         * @description Delete an unassigned stop. This action cannot be undone and will delete all the data associated with the unassigned stop.
+         */
+        delete: operations["deleteUnassignedStop"];
+        options?: never;
+        head?: never;
+        /**
+         * Update an existing unassigned stop
+         * @description Does not support updating a unassigned stop's location, nor the `circuitClientId`. To do so, delete the unassignedStop and create a new one.
+         */
+        patch: operations["updateUnassignedStop"];
+        trace?: never;
     };
-    /**
-     * Retrieve an unassigned stop
-     * @description Retrieve an unassigned stop
-     */
-    get: operations["getUnassignedStop"];
-    put?: never;
-    post?: never;
-    /**
-     * Delete an unassigned stop
-     * @description Delete an unassigned stop. This action cannot be undone and will delete all the data associated with the unassigned stop.
-     */
-    delete: operations["deleteUnassignedStop"];
-    options?: never;
-    head?: never;
-    /**
-     * Update an existing unassigned stop
-     * @description Does not support updating a unassigned stop's location, nor the `circuitClientId`. To do so, delete the unassignedStop and create a new one.
-     */
-    patch: operations["updateUnassignedStop"];
-    trace?: never;
-  };
-  "/unassignedStops": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/unassignedStops": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List unassigned stops */
+        get: operations["listUnassignedStops"];
+        put?: never;
+        /**
+         * Create a new unassigned stop
+         * @description Create a new unassigned stop with the given data.
+         */
+        post: operations["createUnassignedStop"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** List unassigned stops */
-    get: operations["listUnassignedStops"];
-    put?: never;
-    /**
-     * Create a new unassigned stop
-     * @description Create a new unassigned stop with the given data.
-     */
-    post: operations["createUnassignedStop"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/unassignedStops:import": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/unassignedStops:import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Batch import unassigned stops
+         * @description Batch import unassigned stops. The request body must contain an array of unassigned stops to import. Note that the `depot` is the same for all unassigned stops in a same request. This is because the depot is used as a biasing location for the unassigned stops, so that the geocoding results are more accurate for a same region.
+         */
+        post: operations["importUnassignedStops"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /**
-     * Batch import unassigned stops
-     * @description Batch import unassigned stops. The request body must contain an array of unassigned stops to import. Note that the `depot` is the same for all unassigned stops in a same request. This is because the depot is used as a biasing location for the unassigned stops, so that the geocoding results are more accurate for a same region.
-     */
-    post: operations["importUnassignedStops"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/team/customStopProperties/": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/team/customStopProperties/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List custom stop properties
+         * @description Returns a list of custom stop properties definitions.
+         */
+        get: operations["listCustomStopProperties"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * List custom stop properties
-     * @description Returns a list of custom stop properties definitions.
-     */
-    get: operations["listCustomStopProperties"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/team/customStopProperties/{customStopPropertyId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/team/customStopProperties/{customStopPropertyId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve a custom stop property
+         * @description Returns a custom stop property definition.
+         */
+        get: operations["getCustomStopProperty"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /**
-     * Retrieve a custom stop property
-     * @description Returns a custom stop property definition.
-     */
-    get: operations["getCustomStopProperty"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    routeIdSchema: string;
-    depotIdSchema: string;
-    driverIdSchema: string;
-    planIdSchema: string;
-    stopIdSchema: string;
-    unassignedStopIdSchema: string;
-    operationIdSchema: string;
-    /** @description A date. */
-    dateSchema: {
-      /** @description The day of the date. */
-      day: number;
-      /** @description The month of the date. */
-      month: number;
-      /** @description The year of the date. */
-      year: number;
-    };
-    /** @description A driver. */
-    driverSchema: {
-      /** @description The driver id, in the format `drivers/<id>` */
-      id: string;
-      /** @description The name of the driver. */
-      name: null | string;
-      /** @description The email of the driver. */
-      email: null | string;
-      /** @description The phone number of the driver. */
-      phone: null | string;
-      /** @description The display name of the driver. */
-      displayName: null | string;
-      /** @description Whether the driver membership is active or paused. Paused drivers will not be assigned to any routes. */
-      active: boolean;
-      /** @description Depots associated with the driver. */
-      depots: string[];
-      /** @description Settings to override default route settings. */
-      routeOverrides: {
-        /** @description Driver's start time. */
-        startTime: {
-          /** @description Hour of the day */
-          hour: number;
-          /** @description Minute of the hour */
-          minute: number;
-        } | null;
-        /** @description Driver's end time. */
-        endTime: {
-          /** @description Hour of the day */
-          hour: number;
-          /** @description Minute of the hour */
-          minute: number;
-        } | null;
-        /** @description Driver's start location. */
-        startAddress: {
-          /** @description The address of the stop. */
-          address: string;
-          /** @description The first line of the address. */
-          addressLineOne: string;
-          /** @description The second line of the address. */
-          addressLineTwo: string;
-          /** @description The latitude of the address in decimal degrees. */
-          latitude: number | null;
-          /** @description The longitude of the address in decimal degrees. */
-          longitude: number | null;
-          /** @description The identifier of the place corresponding to this stop on Google Places */
-          placeId: string | null;
-          /** @description Array of strings that is provided by the Google AutoCompleteAPI */
-          placeTypes: string[];
-        } | null;
-        /** @description Driver's end location. */
-        endAddress: {
-          /** @description The address of the stop. */
-          address: string;
-          /** @description The first line of the address. */
-          addressLineOne: string;
-          /** @description The second line of the address. */
-          addressLineTwo: string;
-          /** @description The latitude of the address in decimal degrees. */
-          latitude: number | null;
-          /** @description The longitude of the address in decimal degrees. */
-          longitude: number | null;
-          /** @description The identifier of the place corresponding to this stop on Google Places */
-          placeId: string | null;
-          /** @description Array of strings that is provided by the Google AutoCompleteAPI */
-          placeTypes: string[];
-        } | null;
-        /** @description Maximum number of Stops the Driver can take in a route. */
-        maxStops: number | null;
-        /**
-         * @description The relative driving speed of the driver compared to others.
-         * @enum {string}
-         */
-        drivingSpeed: "slower" | "average" | "faster";
-        /**
-         * @description The relative delivery speed of the driver compared to others.
-         * @enum {string}
-         */
-        deliverySpeed: "slower" | "average" | "faster";
-        /** @description The vehicle type the driver will be using for deliveries. */
-        vehicleType:
-          | (
-            | "bike"
-            | "scooter"
-            | "car"
-            | "small_truck"
-            | "truck"
-            | "electric_cargo_bike"
-          )
-          | null;
-      };
-    };
-    /** @description A route. */
-    routeSchema: {
-      /** @description The id of the route, in the format `routes/<id>`. */
-      id: string;
-      /** @description The title of the route. */
-      title: string;
-      /** @description The number of stops in the route. */
-      stopCount: number;
-      /** @description The id of the driver. */
-      driver: components["schemas"]["driverIdSchema"] | null;
-      /** @description The state of the route. */
-      state: {
-        /** @description Whether the route is completed. */
-        completed: boolean;
-        /** @description The timestamp the route was completed at. */
-        completedAt: number | null;
-        /** @description Whether the route is distributed. */
-        distributed: boolean;
-        /** @description The timestamp the route was distributed at. */
-        distributedAt: number | null;
-        /** @description Whether the recipients were notified. */
-        notifiedRecipients: boolean;
-        /** @description The timestamp the recipients were notified at. */
-        notifiedRecipientsAt: number | null;
-        /** @description Whether the route is started. */
-        started: boolean;
-        /** @description The timestamp the route was started at. */
-        startedAt: number | null;
-      } | null;
-      /** @description The id of the related plan. */
-      plan: components["schemas"]["planIdSchema"] | null;
-    };
-    /** @description A plan. */
-    planSchema: {
-      /** @description The unique identifier of the plan. */
-      id: string;
-      /** @description The title of the plan. */
-      title: string;
-      starts: components["schemas"]["dateSchema"];
-      /** @description The depot ID of the plan, in the format depots/<id> */
-      depot: components["schemas"]["depotIdSchema"] | null;
-      /** @description Whether the plan has been distributed. */
-      distributed: boolean;
-      /** @description Whether the plan is writable using the normal Plan APIs. If this is false, you will need to use the [Live Plan APIs](/api#tag/Live-Plans) to edit the plan. Any plan created before 2023-04-01 is not writable. */
-      writable: boolean;
-      /** @description The optimization state of the plan. */
-      optimization:
-        | ("creating" | "editing" | "preview" | "optimized" | "optimizing")
-        | null;
-      /** @description The driver IDs of the plan, in the format drivers/<id>. */
-      drivers: components["schemas"]["driverSchema"][];
-      /** @description The route IDs of the plan, in the format routes/<id>. */
-      routes: components["schemas"]["routeIdSchema"][];
-    };
-    /** @description A depot. */
-    depotSchema: {
-      /** @description The depot id, in the format `depots/<id>` */
-      id: string;
-      /** @description The name of the depot. */
-      name: string;
-    };
-    /** @description Time of day in hours and minutes. Uses a 24 hour clock. */
-    timeOfDaySchema: {
-      /** @description Hour of the day */
-      hour: number;
-      /** @description Minute of the hour */
-      minute: number;
-    };
-    /** @description A stop of a plan, can be related to a route. */
-    stopSchema: {
-      /** @description The id of the stop, in the format `plans/<id>/stops/<id>`. */
-      id: string;
-      /** @description The address of the stop. */
-      address: {
-        /** @description The address of the stop. */
-        address: string;
-        /** @description The first line of the address. */
-        addressLineOne: string;
-        /** @description The second line of the address. */
-        addressLineTwo: string;
-        /** @description The latitude of the address in decimal degrees. */
-        latitude: number | null;
-        /** @description The longitude of the address in decimal degrees. */
-        longitude: number | null;
-        /** @description The identifier of the place corresponding to this stop on Google Places */
-        placeId: null | string;
-        /** @description Array of strings that is provided by the Google AutoCompleteAPI */
-        placeTypes: string[];
-      };
-      /** @description List of Barcode IDs associated with the stop. */
-      barcodes: string[];
-      /** @description The driver identifier. This field is deprecated, prefer using `allowedDriversIdentifiers`. */
-      driverIdentifier: null | string;
-      /** @description The allowed drivers that can be assigned to this stop, replaces the `driverIdentifier` field. */
-      allowedDriversIdentifiers: string[];
-      /** @description Estimated time that the driver will take to arrive at this stop from the previous stop in seconds. */
-      estimatedTravelDuration: null | number;
-      /** @description The distance in meters between the previous stop and this stop. */
-      estimatedTravelDistance: null | number;
-      /** @description Notes for the stop. */
-      notes: null | string;
-      /** @description The number of packages. */
-      packageCount: null | number;
-      /** @description Weight information for the stop. */
-      weight: {
-        /** @description The weight amount for this stop. */
-        amount: number;
-        /**
-         * @description The weight unit in which the amount is specified (defined at team's capacity unit).
-         * @enum {string}
-         */
-        unit: "kilogram" | "pound" | "metric-ton";
-      } | null;
-      /**
-       * @description The type of the stop. `start` is the first stop of the route, `stop` is a stop in the middle of the route, and `end` is the last stop of the route.
-       * @enum {string}
-       */
-      type: "start" | "stop" | "end";
-      /** @description The label of the package. */
-      packageLabel: null | string;
-      /** @description The position of the stop in the route. */
-      stopPosition: null | number;
-      /** @description The recipient tracking link. */
-      trackingLink: null | string;
-      /** @description The web app link. */
-      webAppLink: string;
-      /** @description The order information of the stop. */
-      orderInfo: {
-        /** @description The products of the stop. */
-        products: string[];
-        /** @description Name of the seller where the order is from. */
-        sellerName: null | string;
-        /** @description Id of the seller where the order is from. */
-        sellerOrderId: null | string;
-        /** @description Website of the seller where the order is from. */
-        sellerWebsite: null | string;
-      };
-      /** @description The position of the package in the vehicle. */
-      placeInVehicle: {
-        /** @description The x position of the package. */
-        x: ("left" | "right") | null;
-        /** @description The y position of the package. */
-        y: ("front" | "back" | "middle") | null;
-        /** @description The z position of the package. */
-        z: ("floor" | "shelf") | null;
-      } | null;
-      /** @description The recipient of the stop. */
-      recipient: {
-        /** @description The name of the recipient. */
-        name: null | string;
-        /** @description The email of the recipient. */
-        email: null | string;
-        /** @description The phone of the recipient. */
-        phone: null | string;
-        /** @description The external id of the recipient. */
-        externalId: null | string;
-      };
-      /**
-       * @default delivery
-       * @enum {string}
-       */
-      activity: "delivery" | "pickup";
-      /** @description The delivery information of the stop. */
-      deliveryInfo: {
-        /** @description Whether the stop was attempted. */
-        attempted: boolean;
-        /** @description When the stop was attempted in seconds since epoch. */
-        attemptedAt: number | null;
-        /** @description Where the stop was attempted. */
-        attemptedLocation: {
-          /** @description The latitude of the location. */
-          latitude: number;
-          /** @description The longitude of the location. */
-          longitude: number;
-        } | null;
-        /** @description Internal notes provided by the driver. */
-        driverProvidedInternalNotes: string | null;
-        /** @description Recipient notes provided by the driver. */
-        driverProvidedRecipientNotes: string | null;
-        /** @description URLs of proof of delivery photos. */
-        photoUrls: string[];
-        /** @description Notes from recipient */
-        recipientProvidedNotes: string | null;
-        /** @description URL of the signature. */
-        signatureUrl: string | null;
-        /** @description Name of the signee. */
-        signeeName: string | null;
-        /** @description Whether the stop was succeeded. */
-        succeeded: boolean;
-        /**
-         * @description The state of the delivery.
-         * @enum {string}
-         */
-        state:
-          | "delivered_to_recipient"
-          | "delivered_to_third_party"
-          | "delivered_to_mailbox"
-          | "delivered_to_safe_place"
-          | "delivered_to_pickup_point"
-          | "delivered_other"
-          | "picked_up_from_customer"
-          | "picked_up_unmanned"
-          | "picked_up_from_locker"
-          | "picked_up_other"
-          | "failed_not_home"
-          | "failed_cant_find_address"
-          | "failed_no_parking"
-          | "failed_no_time"
-          | "failed_package_not_available"
-          | "failed_other"
-          | "failed_missing_required_proof"
-          | "failed_payment_not_received"
-          | "unattempted";
-      } | null;
-      /** @description The payment due upon delivery also known as "Cash on Delivery". */
-      paymentOnDelivery: {
-        /** @description The amount *in minor units* (e.g. cents) to be collected upon delivery. */
-        amount: number | null;
-        /** @description The payment's currency in ISO 4217 standard. */
-        currency: string;
-      } | null;
-      /** @description The proof of attempt requirements of the stop. */
-      proofOfAttemptRequirements: {
-        /** @description Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery */
-        enabled: null | boolean;
-      };
-      /** @description The id of the plan, in the format `plans/<id>`. */
-      plan: string;
-      /** @description The route of the stop, if any. */
-      route: components["schemas"]["routeSchema"] | null;
-      /** @description The estimated time of arrival data of the stop. */
-      eta: {
-        /** @description The estimated time in seconds since epoch. */
-        estimatedArrivalAt: number;
-        /** @description The latest estimated time in seconds since epoch. */
-        estimatedLatestArrivalAt: number;
-        /** @description The earliest estimated time in seconds since epoch. */
-        estimatedEarliestArrivalAt: number;
-      } | null;
-      /** @description The reason why the ETA data is null, if it is. */
-      etaNullReason: {
-        /** @enum {string} */
-        reason: "not_optimized" | "subscription_not_supported";
-        message: string;
-        url: string | null;
-      } | null;
-      /** @description The timing data of the stop. */
-      timing: {
-        /** @description Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds. */
-        estimatedAttemptDuration: null | number;
-        /** @description The earliest time that the driver should arrive at the stop */
-        earliestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
-        /** @description The latest time that the driver should arrive at the stop. */
-        latestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
-      };
-      /**
-       * @default default
-       * @enum {string}
-       */
-      optimizationOrder: "first" | "last" | "default";
-      /** @description Custom properties of the stop, can be used to store additional information. */
-      customProperties: {
-        [key: string]: string | null;
-      } | null;
-      /** @description The associated Client ID of the Spoke Connect */
-      circuitClientId: null | string;
-    };
-    /** @description An unassigned stop. */
-    unassignedStopSchema: {
-      /** @description The id of the unassigned stop, in the format `unassignedStops/<id>`. */
-      id: string;
-      /** @description The depot that this unassigned stop belongs to. */
-      depot?: unknown;
-      /** @description The address of the stop. */
-      address: {
-        /** @description The address of the stop. */
-        address: string;
-        /** @description The first line of the address. */
-        addressLineOne: string;
-        /** @description The second line of the address. */
-        addressLineTwo: string;
-        /** @description The latitude of the address in decimal degrees. */
-        latitude: number | null;
-        /** @description The longitude of the address in decimal degrees. */
-        longitude: number | null;
-        /** @description The identifier of the place corresponding to this stop on Google Places */
-        placeId: null | string;
-        /** @description Array of strings that is provided by the Google AutoCompleteAPI */
-        placeTypes: string[];
-      };
-      /** @description List of Barcode IDs associated with the stop. */
-      barcodes: string[];
-      /** @description The allowed drivers that can be assigned to this stop. */
-      allowedDriversIdentifiers: string[];
-      /** @description Notes for the stop. */
-      notes: null | string;
-      /** @description The number of packages. */
-      packageCount: null | number;
-      /** @description Weight information for the stop. */
-      weight: {
-        /** @description The weight amount for this stop. */
-        amount: number;
-        /**
-         * @description The weight unit in which the amount is specified (defined at team's capacity unit).
-         * @enum {string}
-         */
-        unit: "kilogram" | "pound" | "metric-ton";
-      } | null;
-      /** @description The order information of the stop. */
-      orderInfo: {
-        /** @description The products of the stop. */
-        products: string[];
-        /** @description Name of the seller where the order is from. */
-        sellerName: null | string;
-        /** @description Id of the seller where the order is from. */
-        sellerOrderId: null | string;
-        /** @description Website of the seller where the order is from. */
-        sellerWebsite: null | string;
-      };
-      /** @description The recipient of the stop. */
-      recipient: {
-        /** @description The name of the recipient. */
-        name: null | string;
-        /** @description The email of the recipient. */
-        email: null | string;
-        /** @description The phone of the recipient. */
-        phone: null | string;
-        /** @description The external id of the recipient. */
-        externalId: null | string;
-      };
-      /**
-       * @default delivery
-       * @enum {string}
-       */
-      activity: "delivery" | "pickup";
-      /** @description The timing data of the stop. */
-      timing: {
-        /** @description Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds. */
-        estimatedAttemptDuration: null | number;
-        /** @description The earliest time that the driver should arrive at the stop */
-        earliestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
-        /** @description The latest time that the driver should arrive at the stop. */
-        latestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
-      };
-      /**
-       * @default default
-       * @enum {string}
-       */
-      optimizationOrder: "first" | "last" | "default";
-      /** @description The payment due upon delivery also known as "Cash on Delivery". */
-      paymentOnDelivery: {
-        /** @description The amount *in minor units* (e.g. cents) to be collected upon delivery. */
-        amount: number | null;
-        /** @description The payment's currency in ISO 4217 standard. */
-        currency: string;
-      } | null;
-      /** @description The proof of attempt requirements of the stop. */
-      proofOfAttemptRequirements: {
-        /** @description Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery */
-        enabled: null | boolean;
-      };
-      /** @description Custom properties of the stop, can be used to store additional information. */
-      customProperties: {
-        [key: string]: string | null;
-      } | null;
-      /** @description The associated Client ID of the Spoke Connect */
-      circuitClientId: null | string;
-    };
-    operationSchema: {
-      /** @description The id of the operation, in the format `operations/<id>`. */
-      id: string;
-      /** @enum {string} */
-      type: "plan_optimization";
-      /** @description Whether the operation is done. */
-      done: boolean;
-      /** @description Metadata related to a plan optimization operation. */
-      metadata: {
-        /** @description Whether the operation was canceled. */
-        canceled: boolean;
-        /** @description The time the operation started at, in seconds since epoch. */
-        startedAt: number;
-        /** @description The time the operation finished at, in seconds since epoch. */
-        finishedAt: null | number;
-        /** @description The entity that started the operation. */
-        startedBy: "dispatcher" | "api" | string;
-        /** @description The id of the plan, in the format `plans/<id>`. */
-        targetPlanId: string;
-      };
-      /** @description The result of the plan optimization operation, or an error. */
-      result:
-        | ({
-          /** @description The number of stops that were considered for optimization. */
-          numOptimizedStops: number;
-          /** @description The stops that were skipped, if any. */
-          skippedStops: {
+    schemas: {
+        routeIdSchema: string;
+        depotIdSchema: string;
+        driverIdSchema: string;
+        planIdSchema: string;
+        stopIdSchema: string;
+        unassignedStopIdSchema: string;
+        operationIdSchema: string;
+        /** @description A date. */
+        dateSchema: {
+            /** @description The day of the date. */
+            day: number;
+            /** @description The month of the date. */
+            month: number;
+            /** @description The year of the date. */
+            year: number;
+        };
+        /** @description A driver. */
+        driverSchema: {
+            /** @description The driver id, in the format `drivers/<id>` */
+            id: string;
+            /** @description The name of the driver. */
+            name: null | string;
+            /** @description The email of the driver. */
+            email: null | string;
+            /** @description The phone number of the driver. */
+            phone: null | string;
+            /** @description The display name of the driver. */
+            displayName: null | string;
+            /** @description Whether the driver membership is active or paused. Paused drivers will not be assigned to any routes. */
+            active: boolean;
+            /** @description Depots associated with the driver. */
+            depots: string[];
+            /** @description Settings to override default route settings. */
+            routeOverrides: {
+                /** @description Driver's start time. */
+                startTime: {
+                    /** @description Hour of the day */
+                    hour: number;
+                    /** @description Minute of the hour */
+                    minute: number;
+                } | null;
+                /** @description Driver's end time. */
+                endTime: {
+                    /** @description Hour of the day */
+                    hour: number;
+                    /** @description Minute of the hour */
+                    minute: number;
+                } | null;
+                /** @description Driver's start location. */
+                startAddress: {
+                    /** @description The address of the stop. */
+                    address: string;
+                    /** @description The first line of the address. */
+                    addressLineOne: string;
+                    /** @description The second line of the address. */
+                    addressLineTwo: string;
+                    /** @description The latitude of the address in decimal degrees. */
+                    latitude: number | null;
+                    /** @description The longitude of the address in decimal degrees. */
+                    longitude: number | null;
+                    /** @description The identifier of the place corresponding to this stop on Google Places */
+                    placeId: string | null;
+                    /** @description Array of strings that is provided by the Google AutoCompleteAPI */
+                    placeTypes: string[];
+                } | null;
+                /** @description Driver's end location. */
+                endAddress: {
+                    /** @description The address of the stop. */
+                    address: string;
+                    /** @description The first line of the address. */
+                    addressLineOne: string;
+                    /** @description The second line of the address. */
+                    addressLineTwo: string;
+                    /** @description The latitude of the address in decimal degrees. */
+                    latitude: number | null;
+                    /** @description The longitude of the address in decimal degrees. */
+                    longitude: number | null;
+                    /** @description The identifier of the place corresponding to this stop on Google Places */
+                    placeId: string | null;
+                    /** @description Array of strings that is provided by the Google AutoCompleteAPI */
+                    placeTypes: string[];
+                } | null;
+                /** @description Maximum number of Stops the Driver can take in a route. */
+                maxStops: number | null;
+                /**
+                 * @description The relative driving speed of the driver compared to others.
+                 * @enum {string}
+                 */
+                drivingSpeed: "slower" | "average" | "faster";
+                /**
+                 * @description The relative delivery speed of the driver compared to others.
+                 * @enum {string}
+                 */
+                deliverySpeed: "slower" | "average" | "faster";
+                /** @description The vehicle type the driver will be using for deliveries. */
+                vehicleType: ("bike" | "scooter" | "car" | "small_truck" | "truck" | "electric_cargo_bike") | null;
+            };
+        };
+        /** @description A route. */
+        routeSchema: {
+            /** @description The id of the route, in the format `routes/<id>`. */
+            id: string;
+            /** @description The title of the route. */
+            title: string;
+            /** @description The number of stops in the route. */
+            stopCount: number;
+            /** @description The id of the driver. */
+            driver: components["schemas"]["driverIdSchema"] | null;
+            /** @description The state of the route. */
+            state: {
+                /** @description Whether the route is completed. */
+                completed: boolean;
+                /** @description The timestamp the route was completed at. */
+                completedAt: number | null;
+                /** @description Whether the route is distributed. */
+                distributed: boolean;
+                /** @description The timestamp the route was distributed at. */
+                distributedAt: number | null;
+                /** @description Whether the recipients were notified. */
+                notifiedRecipients: boolean;
+                /** @description The timestamp the recipients were notified at. */
+                notifiedRecipientsAt: number | null;
+                /** @description Whether the route is started. */
+                started: boolean;
+                /** @description The timestamp the route was started at. */
+                startedAt: number | null;
+            } | null;
+            /** @description The id of the related plan. */
+            plan: components["schemas"]["planIdSchema"] | null;
+        };
+        /** @description A plan. */
+        planSchema: {
+            /** @description The unique identifier of the plan. */
+            id: string;
+            /** @description The title of the plan. */
+            title: string;
+            starts: components["schemas"]["dateSchema"];
+            /** @description The depot ID of the plan, in the format depots/<id> */
+            depot: components["schemas"]["depotIdSchema"] | null;
+            /** @description Whether the plan has been distributed. */
+            distributed: boolean;
+            /** @description Whether the plan is writable using the normal Plan APIs. If this is false, you will need to use the [Live Plan APIs](/api#tag/Live-Plans) to edit the plan. Any plan created before 2023-04-01 is not writable. */
+            writable: boolean;
+            /** @description The optimization state of the plan. */
+            optimization: ("creating" | "editing" | "preview" | "optimized" | "optimizing") | null;
+            /** @description The driver IDs of the plan, in the format drivers/<id>. */
+            drivers: components["schemas"]["driverSchema"][];
+            /** @description The route IDs of the plan, in the format routes/<id>. */
+            routes: components["schemas"]["routeIdSchema"][];
+        };
+        /** @description A depot. */
+        depotSchema: {
+            /** @description The depot id, in the format `depots/<id>` */
+            id: string;
+            /** @description The name of the depot. */
+            name: string;
+        };
+        /** @description Time of day in hours and minutes. Uses a 24 hour clock. */
+        timeOfDaySchema: {
+            /** @description Hour of the day */
+            hour: number;
+            /** @description Minute of the hour */
+            minute: number;
+        };
+        /** @description A stop of a plan, can be related to a route. */
+        stopSchema: {
             /** @description The id of the stop, in the format `plans/<id>/stops/<id>`. */
             id: string;
-            /** @description The reason the stop was skipped. */
-            reason:
-              | "impossible_time_window"
-              | "impossible_navigation"
-              | "impossible_number_of_stops"
-              | "impossible_order_of_stops"
-              | string;
-          }[];
-        } | {
-          /** @description A code that identifies the error */
-          code: string;
-          /** @description A human-readable message that describes the error. This message is not intended to be parsed by machines. */
-          message: string;
-        })
-        | null;
+            /** @description The address of the stop. */
+            address: {
+                /** @description The address of the stop. */
+                address: string;
+                /** @description The first line of the address. */
+                addressLineOne: string;
+                /** @description The second line of the address. */
+                addressLineTwo: string;
+                /** @description The latitude of the address in decimal degrees. */
+                latitude: number | null;
+                /** @description The longitude of the address in decimal degrees. */
+                longitude: number | null;
+                /** @description The identifier of the place corresponding to this stop on Google Places */
+                placeId: null | string;
+                /** @description Array of strings that is provided by the Google AutoCompleteAPI */
+                placeTypes: string[];
+            };
+            /** @description List of Barcode IDs associated with the stop. */
+            barcodes: string[];
+            /** @description The driver identifier. This field is deprecated, prefer using `allowedDriversIdentifiers`. */
+            driverIdentifier: null | string;
+            /** @description The allowed drivers that can be assigned to this stop, replaces the `driverIdentifier` field. */
+            allowedDriversIdentifiers: string[];
+            /** @description Estimated time that the driver will take to arrive at this stop from the previous stop in seconds. */
+            estimatedTravelDuration: null | number;
+            /** @description The distance in meters between the previous stop and this stop. */
+            estimatedTravelDistance: null | number;
+            /** @description Notes for the stop. */
+            notes: null | string;
+            /** @description The number of packages. */
+            packageCount: null | number;
+            /** @description Weight information for the stop. */
+            weight: {
+                /** @description The weight amount for this stop. */
+                amount: number;
+                /**
+                 * @description The weight unit in which the amount is specified (defined at team's capacity unit).
+                 * @enum {string}
+                 */
+                unit: "kilogram" | "pound" | "metric-ton";
+            } | null;
+            /**
+             * @description The type of the stop. `start` is the first stop of the route, `stop` is a stop in the middle of the route, and `end` is the last stop of the route.
+             * @enum {string}
+             */
+            type: "start" | "stop" | "end";
+            /** @description The label of the package. */
+            packageLabel: null | string;
+            /** @description The position of the stop in the route. */
+            stopPosition: null | number;
+            /** @description The recipient tracking link. */
+            trackingLink: null | string;
+            /** @description The web app link. */
+            webAppLink: string;
+            /** @description The order information of the stop. */
+            orderInfo: {
+                /** @description The products of the stop. */
+                products: string[];
+                /** @description Name of the seller where the order is from. */
+                sellerName: null | string;
+                /** @description Id of the seller where the order is from. */
+                sellerOrderId: null | string;
+                /** @description Website of the seller where the order is from. */
+                sellerWebsite: null | string;
+            };
+            /** @description The position of the package in the vehicle. */
+            placeInVehicle: {
+                /** @description The x position of the package. */
+                x: ("left" | "right") | null;
+                /** @description The y position of the package. */
+                y: ("front" | "back" | "middle") | null;
+                /** @description The z position of the package. */
+                z: ("floor" | "shelf") | null;
+            } | null;
+            /** @description The recipient of the stop. */
+            recipient: {
+                /** @description The name of the recipient. */
+                name: null | string;
+                /** @description The email of the recipient. */
+                email: null | string;
+                /** @description The phone of the recipient. */
+                phone: null | string;
+                /** @description The external id of the recipient. */
+                externalId: null | string;
+            };
+            /**
+             * @default delivery
+             * @enum {string}
+             */
+            activity: "delivery" | "pickup";
+            /** @description The delivery information of the stop. */
+            deliveryInfo: {
+                /** @description Whether the stop was attempted. */
+                attempted: boolean;
+                /** @description When the stop was attempted in seconds since epoch. */
+                attemptedAt: number | null;
+                /** @description Where the stop was attempted. */
+                attemptedLocation: {
+                    /** @description The latitude of the location. */
+                    latitude: number;
+                    /** @description The longitude of the location. */
+                    longitude: number;
+                } | null;
+                /** @description Internal notes provided by the driver. */
+                driverProvidedInternalNotes: string | null;
+                /** @description Recipient notes provided by the driver. */
+                driverProvidedRecipientNotes: string | null;
+                /** @description URLs of proof of delivery photos. */
+                photoUrls: string[];
+                /** @description Notes from recipient */
+                recipientProvidedNotes: string | null;
+                /** @description URL of the signature. */
+                signatureUrl: string | null;
+                /** @description Name of the signee. */
+                signeeName: string | null;
+                /** @description Whether the stop was succeeded. */
+                succeeded: boolean;
+                /**
+                 * @description The state of the delivery.
+                 * @enum {string}
+                 */
+                state: "delivered_to_recipient" | "delivered_to_third_party" | "delivered_to_mailbox" | "delivered_to_safe_place" | "delivered_to_pickup_point" | "delivered_other" | "picked_up_from_customer" | "picked_up_unmanned" | "picked_up_from_locker" | "picked_up_other" | "failed_not_home" | "failed_cant_find_address" | "failed_no_parking" | "failed_no_time" | "failed_package_not_available" | "failed_other" | "failed_missing_required_proof" | "failed_payment_not_received" | "unattempted";
+            } | null;
+            /** @description The payment due upon delivery also known as "Cash on Delivery". */
+            paymentOnDelivery: {
+                /** @description The amount *in minor units* (e.g. cents) to be collected upon delivery. */
+                amount: number | null;
+                /** @description The payment's currency in ISO 4217 standard. */
+                currency: string;
+            } | null;
+            /** @description The proof of attempt requirements of the stop. */
+            proofOfAttemptRequirements: {
+                /** @description Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery */
+                enabled: null | boolean;
+            };
+            /** @description The id of the plan, in the format `plans/<id>`. */
+            plan: string;
+            /** @description The route of the stop, if any. */
+            route: components["schemas"]["routeSchema"] | null;
+            /** @description The estimated time of arrival data of the stop. */
+            eta: {
+                /** @description The estimated time in seconds since epoch. */
+                estimatedArrivalAt: number;
+                /** @description The latest estimated time in seconds since epoch. */
+                estimatedLatestArrivalAt: number;
+                /** @description The earliest estimated time in seconds since epoch. */
+                estimatedEarliestArrivalAt: number;
+            } | null;
+            /** @description The reason why the ETA data is null, if it is. */
+            etaNullReason: {
+                /** @enum {string} */
+                reason: "not_optimized" | "subscription_not_supported";
+                message: string;
+                url: string | null;
+            } | null;
+            /** @description The timing data of the stop. */
+            timing: {
+                /** @description Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds. */
+                estimatedAttemptDuration: null | number;
+                /** @description The earliest time that the driver should arrive at the stop */
+                earliestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
+                /** @description The latest time that the driver should arrive at the stop. */
+                latestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
+            };
+            /**
+             * @default default
+             * @enum {string}
+             */
+            optimizationOrder: "first" | "last" | "default";
+            /** @description Custom properties of the stop, can be used to store additional information. */
+            customProperties: {
+                [key: string]: string | null;
+            } | null;
+            /** @description The associated Client ID of the Spoke Connect */
+            circuitClientId: null | string;
+        };
+        /** @description An unassigned stop. */
+        unassignedStopSchema: {
+            /** @description The id of the unassigned stop, in the format `unassignedStops/<id>`. */
+            id: string;
+            /** @description The depot that this unassigned stop belongs to. */
+            depot?: unknown;
+            /** @description The address of the stop. */
+            address: {
+                /** @description The address of the stop. */
+                address: string;
+                /** @description The first line of the address. */
+                addressLineOne: string;
+                /** @description The second line of the address. */
+                addressLineTwo: string;
+                /** @description The latitude of the address in decimal degrees. */
+                latitude: number | null;
+                /** @description The longitude of the address in decimal degrees. */
+                longitude: number | null;
+                /** @description The identifier of the place corresponding to this stop on Google Places */
+                placeId: null | string;
+                /** @description Array of strings that is provided by the Google AutoCompleteAPI */
+                placeTypes: string[];
+            };
+            /** @description List of Barcode IDs associated with the stop. */
+            barcodes: string[];
+            /** @description The allowed drivers that can be assigned to this stop. */
+            allowedDriversIdentifiers: string[];
+            /** @description Notes for the stop. */
+            notes: null | string;
+            /** @description The number of packages. */
+            packageCount: null | number;
+            /** @description Weight information for the stop. */
+            weight: {
+                /** @description The weight amount for this stop. */
+                amount: number;
+                /**
+                 * @description The weight unit in which the amount is specified (defined at team's capacity unit).
+                 * @enum {string}
+                 */
+                unit: "kilogram" | "pound" | "metric-ton";
+            } | null;
+            /** @description The order information of the stop. */
+            orderInfo: {
+                /** @description The products of the stop. */
+                products: string[];
+                /** @description Name of the seller where the order is from. */
+                sellerName: null | string;
+                /** @description Id of the seller where the order is from. */
+                sellerOrderId: null | string;
+                /** @description Website of the seller where the order is from. */
+                sellerWebsite: null | string;
+            };
+            /** @description The recipient of the stop. */
+            recipient: {
+                /** @description The name of the recipient. */
+                name: null | string;
+                /** @description The email of the recipient. */
+                email: null | string;
+                /** @description The phone of the recipient. */
+                phone: null | string;
+                /** @description The external id of the recipient. */
+                externalId: null | string;
+            };
+            /**
+             * @default delivery
+             * @enum {string}
+             */
+            activity: "delivery" | "pickup";
+            /** @description The timing data of the stop. */
+            timing: {
+                /** @description Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds. */
+                estimatedAttemptDuration: null | number;
+                /** @description The earliest time that the driver should arrive at the stop */
+                earliestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
+                /** @description The latest time that the driver should arrive at the stop. */
+                latestAttemptTime: components["schemas"]["timeOfDaySchema"] | null;
+            };
+            /**
+             * @default default
+             * @enum {string}
+             */
+            optimizationOrder: "first" | "last" | "default";
+            /** @description The payment due upon delivery also known as "Cash on Delivery". */
+            paymentOnDelivery: {
+                /** @description The amount *in minor units* (e.g. cents) to be collected upon delivery. */
+                amount: number | null;
+                /** @description The payment's currency in ISO 4217 standard. */
+                currency: string;
+            } | null;
+            /** @description The proof of attempt requirements of the stop. */
+            proofOfAttemptRequirements: {
+                /** @description Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery */
+                enabled: null | boolean;
+            };
+            /** @description Custom properties of the stop, can be used to store additional information. */
+            customProperties: {
+                [key: string]: string | null;
+            } | null;
+            /** @description The associated Client ID of the Spoke Connect */
+            circuitClientId: null | string;
+        };
+        operationSchema: {
+            /** @description The id of the operation, in the format `operations/<id>`. */
+            id: string;
+            /** @enum {string} */
+            type: "plan_optimization";
+            /** @description Whether the operation is done. */
+            done: boolean;
+            /** @description Metadata related to a plan optimization operation. */
+            metadata: {
+                /** @description Whether the operation was canceled. */
+                canceled: boolean;
+                /** @description The time the operation started at, in seconds since epoch. */
+                startedAt: number;
+                /** @description The time the operation finished at, in seconds since epoch. */
+                finishedAt: null | number;
+                /** @description The entity that started the operation. */
+                startedBy: "dispatcher" | "api" | string;
+                /** @description The id of the plan, in the format `plans/<id>`. */
+                targetPlanId: string;
+            };
+            /** @description The result of the plan optimization operation, or an error. */
+            result: ({
+                /** @description The number of stops that were considered for optimization. */
+                numOptimizedStops: number;
+                /** @description The stops that were skipped, if any. */
+                skippedStops: {
+                    /** @description The id of the stop, in the format `plans/<id>/stops/<id>`. */
+                    id: string;
+                    /** @description The reason the stop was skipped. */
+                    reason: "impossible_time_window" | "impossible_navigation" | "impossible_number_of_stops" | "impossible_order_of_stops" | string;
+                }[];
+            } | {
+                /** @description A code that identifies the error */
+                code: string;
+                /** @description A human-readable message that describes the error. This message is not intended to be parsed by machines. */
+                message: string;
+            }) | null;
+        };
     };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  listPlans: {
-    parameters: {
-      query?: {
-        /** @description The page token, if any. */
-        pageToken?: string;
-        /** @description The max page size. */
-        maxPageSize?: number;
-        /** @description The filter to apply to the list of plans. The filter params are passed like this: `?filter[title]=foo` or like this: `?filter.title=foo` */
-        filter?: {
-          /** @description Filter by title, exact match */
-          title?: string;
-          /** @description Search for plans that start after this date, inclusive. The date must be in the format YYYY-MM-DD. */
-          startsGte?: string;
-          /** @description Search for plans that start before this date,inclusive. The date must be in the format YYYY-MM-DD. */
-          startsLte?: string;
-        };
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The plans list. */
-            plans: components["schemas"]["planSchema"][];
-            /** @description The next page token. */
-            nextPageToken: null | string;
-          };
-        };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  createPlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** @description The request body for creating a plan. */
-    requestBody: {
-      content: {
-        "application/json": {
-          /** @description The title of the plan. */
-          title: string;
-          /** @description The date the plan starts. Does not accept dates that are too far in the future or past. */
-          starts: {
-            /** @description The day of the date. */
-            day: number;
-            /** @description The month of the date. */
-            month: number;
-            /** @description The year of the date. */
-            year: number;
-          };
-          /**
-           * @description The drivers IDs of the plan, in the format `drivers/<id>`, duplicates will be ignored
-           * @default []
-           */
-          drivers?: string[];
-          /** @description The depot id, in the format `depots/<id>`. If not provided, the team's Main Depot will be used. */
-          depot?: string | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The created plan */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["planSchema"];
-        };
-      };
-      /** @description Failed to validate the request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The depot or driver could not be found. */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Depot not found";
-          } | {
-            message: "Driver not found" | string;
-          };
-        };
-      };
-      /** @description Depot not found */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Depot not found";
-            /** @enum {string} */
-            code: "depot_not_found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getPlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested plan */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["planSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  deletePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Plan deleted successfully */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  updatePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    /**
-     * @description The request body for updating a plan. All the values present in the request will update the plan value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated.
-     *
-     *     **Important:** Notice that the `drivers` Array will be completely replaced. If a single driver is provided in the request, the plan will have all other previous drivers discarded.
-     */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description The title of the plan. */
-          title?: string;
-          /** @description The date the plan starts. Does not accept dates that are too far in the future or past. */
-          starts?: {
-            /** @description The day of the date. */
-            day: number;
-            /** @description The month of the date. */
-            month: number;
-            /** @description The year of the date. */
-            year: number;
-          };
-          /** @description The drivers IDs of the plan, in the format `drivers/<id>`, duplicates will be ignored */
-          drivers?: string[];
-          /** @description The depot id, in the format `depots/<id>`. If not provided, the team's Main Depot will be used. */
-          depot?: string | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The updated plan */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["planSchema"];
-        };
-      };
-      /** @description Failed to validate the request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The plan, depot, or driver could not be found. */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          } | {
-            /** @enum {string} */
-            message: "Depot not found";
-          } | {
-            message: "Driver not found" | string;
-          };
-        };
-      };
-      /** @description The plan is not writable. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan is not writable";
-            /** @enum {string} */
-            code: "plan_not_writable";
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  optimizePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The created plan_optimization operation. */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["operationSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description The plan is not writable, an optimization is already in progress, there are no drivers, or there is a problem with the depot. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan already optimized";
-            /** @enum {string} */
-            code: "plan_already_optimized";
-          } | {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          } | {
-            /** @enum {string} */
-            message:
-              "Plan has no drivers. Either the plan's depot has no drivers, if the optimization is for minimizing drivers, or the plan has no assigned drivers.";
-            /** @enum {string} */
-            code: "no_drivers_available";
-          } | {
-            /** @enum {string} */
-            message:
-              "Please set an end time or max stops per driver for the plan's depot when optimizing to minimize drivers.";
-            /** @enum {string} */
-            code: "no_end_time_and_max_stops_per_driver";
-          } | {
-            /** @enum {string} */
-            message: "Depot not found";
-            /** @enum {string} */
-            code: "depot_not_found";
-          } | {
-            /** @enum {string} */
-            message: "Please set a start location for the plan's depot.";
-            /** @enum {string} */
-            code: "depot_missing_start_address";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  distributePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The distributed plan */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["planSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description The plan is not yet optimized, is optimizing, was already distributed or was modified whilst processing request. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan already distributed";
-            /** @enum {string} */
-            code: "plan_already_distributed";
-          } | {
-            /** @enum {string} */
-            message: "Plan not optimized";
-            /** @enum {string} */
-            code: "plan_not_optimized";
-          } | {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          } | {
-            /** @enum {string} */
-            message:
-              "Plan was modified by a concurrent request. Please retry your request.";
-            /** @enum {string} */
-            code: "plan_concurrent_modification";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  reoptimizePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for reoptimize a plan. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /**
-           * @description The type of optimization to use
-           * @default reorder_changed_stops
-           * @enum {string}
-           */
-          optimizationType?:
-            | "reorder_changed_stops"
-            | "reorder_all_stops"
-            | "redistribute_stops_between_drivers";
-        };
-      };
-    };
-    responses: {
-      /** @description The created plan_optimization operation. */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["operationSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description The plan is not being edited, an optimization is already in progress, there are no drivers, or there is a problem with the depot. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan already optimized";
-            /** @enum {string} */
-            code: "plan_already_optimized";
-          } | {
-            /** @enum {string} */
-            message:
-              "Only `reorder_changed_stops` optimization type is supported when the plan is already distributed.";
-            /** @enum {string} */
-            code: "plan_optimization_not_supported";
-          } | {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          } | {
-            /** @enum {string} */
-            message:
-              "Plan has no drivers. Either the plan's depot has no drivers, if the optimization is for minimizing drivers, or the plan has no assigned drivers.";
-            /** @enum {string} */
-            code: "no_drivers_available";
-          } | {
-            /** @enum {string} */
-            message:
-              "Please set an end time or max stops per driver for the plan's depot when optimizing to minimize drivers.";
-            /** @enum {string} */
-            code: "no_end_time_and_max_stops_per_driver";
-          } | {
-            /** @enum {string} */
-            message: "Depot not found";
-            /** @enum {string} */
-            code: "depot_not_found";
-          } | {
-            /** @enum {string} */
-            message: "Please set a start location for the plan's depot.";
-            /** @enum {string} */
-            code: "depot_missing_start_address";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  redistributePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The distributed plan */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["planSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description The plan is not yet optimized, is optimizing, was already distributed or was modified whilst processing request. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan already distributed";
-            /** @enum {string} */
-            code: "plan_already_distributed";
-          } | {
-            /** @enum {string} */
-            message: "Plan not optimized";
-            /** @enum {string} */
-            code: "plan_not_optimized";
-          } | {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          } | {
-            /** @enum {string} */
-            message:
-              "Plan was modified by a concurrent request. Please retry your request.";
-            /** @enum {string} */
-            code: "plan_concurrent_modification";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  savePlan: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Plan saved successfully */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description The plan is not yet optimized, an optimization is in progress or it was modified whilst processing request. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not optimized";
-            /** @enum {string} */
-            code: "plan_not_optimized";
-          } | {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          } | {
-            /** @enum {string} */
-            message:
-              "Plan was modified by a concurrent request. Please retry your request.";
-            /** @enum {string} */
-            code: "plan_concurrent_modification";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  listStops: {
-    parameters: {
-      query?: {
-        /** @description The page token, if any. */
-        pageToken?: string;
-        /** @description The max page size. */
-        maxPageSize?: number;
-        /** @description The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo` */
-        filter?: {
-          /** @description Filter by the `recipient.externalId` field, exact match */
-          externalId?: string;
-        };
-      };
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The stops list. */
-            stops: components["schemas"]["stopSchema"][];
-            /** @description The next page token. */
-            nextPageToken: null | string;
-          };
-        };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided plan id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan not found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  createStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be. */
-    requestBody: {
-      content: {
-        "application/json": {
-          /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-          address: {
-            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-            addressName?: string | null;
-            /** @description The first line of the address. */
-            addressLineOne?: string | null;
-            /** @description The second line of the address. */
-            addressLineTwo?: string | null;
-            /** @description The city of the address. */
-            city?: string | null;
-            /** @description The state of the address. */
-            state?: string | null;
-            /** @description The zip code of the address. */
-            zip?: string | null;
-            /** @description The country of the address. */
-            country?: string | null;
-            /** @description The latitude of the address in decimal degrees. */
-            latitude?: number | null;
-            /** @description The longitude of the address in decimal degrees. */
-            longitude?: number | null;
-          };
-          /** @description Timing information for this stop */
-          timing?: {
-            /** @description Time of day of the earliest time this stop should happen */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day of the latest time this stop should happen */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
-            estimatedAttemptDuration?: number | null;
-          } | null;
-          /** @description Recipient information for this stop */
-          recipient?: {
-            /** @description External ID of the recipient, as defined by the API user */
-            externalId?: string | null;
-            /** @description Email of the recipient */
-            email?: string | null;
-            /** @description Phone number of the recipient */
-            phone?: string | null;
-            /** @description Name of the recipient */
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            /** @description Products in this stop */
-            products?: string[];
-            /** @description Seller order ID */
-            sellerOrderId?: string | null;
-            /** @description Seller name */
-            sellerName?: string | null;
-            /** @description Seller website */
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
-            amount?: number | null;
-            /**
-             * @description Currency of the payment. Defaults to the team's currency.
-             * @enum {string|null}
-             */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            /** @description Whether proof of attempt is required for this stop */
-            enabled?: boolean | null;
-          } | null;
-          /**
-           * @description Deprecated. Prefer using the `allowedDrivers` field instead.
-           *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
-           */
-          driver?: string | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /**
-           * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
-           * @enum {string|null}
-           */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          /** @description Number of packages in the stop */
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          /** @description Notes for the stop */
-          notes?: string | null;
-          /** @description Client ID of the retailer in Spoke Connect */
-          circuitClientId?: string | null;
-          /** @description List of barcode IDs associated with this stop */
-          barcodes?: string[];
-          /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The created stop */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["stopSchema"];
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description The plan or driver was not found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan is not writable. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan is not writable";
-            /** @enum {string} */
-            code: "plan_not_writable";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      410: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Failed to create stop. Some related resources were deleted while the request was being processed.";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  importStops: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    /** @description An array of stops to import in batch. Supports a maximum of 100 stops per request. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-          address: {
-            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-            addressName?: string | null;
-            /** @description The first line of the address. */
-            addressLineOne?: string | null;
-            /** @description The second line of the address. */
-            addressLineTwo?: string | null;
-            /** @description The city of the address. */
-            city?: string | null;
-            /** @description The state of the address. */
-            state?: string | null;
-            /** @description The zip code of the address. */
-            zip?: string | null;
-            /** @description The country of the address. */
-            country?: string | null;
-            /** @description The latitude of the address in decimal degrees. */
-            latitude?: number | null;
-            /** @description The longitude of the address in decimal degrees. */
-            longitude?: number | null;
-          };
-          /** @description Timing information for this stop */
-          timing?: {
-            /** @description Time of day of the earliest time this stop should happen */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day of the latest time this stop should happen */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
-            estimatedAttemptDuration?: number | null;
-          } | null;
-          /** @description Recipient information for this stop */
-          recipient?: {
-            /** @description External ID of the recipient, as defined by the API user */
-            externalId?: string | null;
-            /** @description Email of the recipient */
-            email?: string | null;
-            /** @description Phone number of the recipient */
-            phone?: string | null;
-            /** @description Name of the recipient */
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            /** @description Products in this stop */
-            products?: string[];
-            /** @description Seller order ID */
-            sellerOrderId?: string | null;
-            /** @description Seller name */
-            sellerName?: string | null;
-            /** @description Seller website */
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
-            amount?: number | null;
-            /**
-             * @description Currency of the payment. Defaults to the team's currency.
-             * @enum {string|null}
-             */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            /** @description Whether proof of attempt is required for this stop */
-            enabled?: boolean | null;
-          } | null;
-          /**
-           * @description Deprecated. Prefer using the `allowedDrivers` field instead.
-           *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
-           */
-          driver?: string | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /**
-           * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
-           * @enum {string|null}
-           */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          /** @description Number of packages in the stop */
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          /** @description Notes for the stop */
-          notes?: string | null;
-          /** @description Client ID of the retailer in Spoke Connect */
-          circuitClientId?: string | null;
-          /** @description List of barcode IDs associated with this stop */
-          barcodes?: string[];
-          /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-        }[];
-      };
-    };
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The ids of the successfully imported stops */
-            success: string[];
-            /** @description The failed stops */
-            failed: {
-              error: {
-                /** @description The error that occurred during import */
-                message: string;
-              };
-              /** @description The stop that failed to import */
-              stop: {
-                /** @description The address of the stop that failed to import */
-                address: {
-                  addressName: string | null;
-                  addressLineOne: string | null;
-                  addressLineTwo: string | null;
-                  city: string | null;
-                  state: string | null;
-                  zip: string | null;
-                  country: string | null;
-                  latitude: number | null;
-                  longitude: number | null;
+    listPlans: {
+        parameters: {
+            query?: {
+                /** @description The page token, if any. */
+                pageToken?: string;
+                /** @description The max page size. */
+                maxPageSize?: number;
+                /** @description The filter to apply to the list of plans. The filter params are passed like this: `?filter[title]=foo` or like this: `?filter.title=foo` */
+                filter?: {
+                    /** @description Filter by title, exact match */
+                    title?: string;
+                    /** @description Search for plans that start after this date, inclusive. The date must be in the format YYYY-MM-DD. */
+                    startsGte?: string;
+                    /** @description Search for plans that start before this date,inclusive. The date must be in the format YYYY-MM-DD. */
+                    startsLte?: string;
                 };
-                /** @description The recipient of the stop that failed to import */
-                recipient: {
-                  externalId: string | null;
-                  email: string | null;
-                  phone: string | null;
-                  name: string | null;
-                } | null;
-              };
-            }[];
-          };
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The plan is no longer accessible or one or more stops contain fields that require upgrading your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description A plan or a driver was not found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan is not writable. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan is not writable";
-            /** @enum {string} */
-            code: "plan_not_writable";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      410: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Failed to create stop. Some related resources were deleted while the request was being processed.";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-        /** @description The stop id */
-        stopId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested stop */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["stopSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  deleteStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-        /** @description The stop id */
-        stopId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Stop deleted successfully */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan is not writable. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan is not writable";
-            /** @enum {string} */
-            code: "plan_not_writable";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  updateStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-        /** @description The stop id */
-        stopId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for updating a stop. All the values present in the request will update the stop value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description Recipient information for this stop */
-          recipient?: {
-            externalId?: string | null;
-            email?: string | null;
-            phone?: string | null;
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            products?: string[];
-            sellerOrderId?: string | null;
-            sellerName?: string | null;
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            amount?: number | null;
-            /** @enum {string|null} */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            enabled?: boolean | null;
-          } | null;
-          driver?: string | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /** @enum {string|null} */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          notes?: string | null;
-          barcodes?: string[];
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-          timing?: {
-            /** @description Time of day in hours and minutes. Use a 24 hour clock. */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day in hours and minutes. Use a 24 hour clock. */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            estimatedAttemptDuration?: number | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The updated stop */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["stopSchema"];
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan is not writable. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan is not writable";
-            /** @enum {string} */
-            code: "plan_not_writable";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  createLiveStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be. */
-    requestBody: {
-      content: {
-        "application/json": {
-          /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-          address: {
-            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-            addressName?: string | null;
-            /** @description The first line of the address. */
-            addressLineOne?: string | null;
-            /** @description The second line of the address. */
-            addressLineTwo?: string | null;
-            /** @description The city of the address. */
-            city?: string | null;
-            /** @description The state of the address. */
-            state?: string | null;
-            /** @description The zip code of the address. */
-            zip?: string | null;
-            /** @description The country of the address. */
-            country?: string | null;
-            /** @description The latitude of the address in decimal degrees. */
-            latitude?: number | null;
-            /** @description The longitude of the address in decimal degrees. */
-            longitude?: number | null;
-          };
-          /** @description Timing information for this stop */
-          timing?: {
-            /** @description Time of day of the earliest time this stop should happen */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day of the latest time this stop should happen */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
-            estimatedAttemptDuration?: number | null;
-          } | null;
-          /** @description Recipient information for this stop */
-          recipient?: {
-            /** @description External ID of the recipient, as defined by the API user */
-            externalId?: string | null;
-            /** @description Email of the recipient */
-            email?: string | null;
-            /** @description Phone number of the recipient */
-            phone?: string | null;
-            /** @description Name of the recipient */
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            /** @description Products in this stop */
-            products?: string[];
-            /** @description Seller order ID */
-            sellerOrderId?: string | null;
-            /** @description Seller name */
-            sellerName?: string | null;
-            /** @description Seller website */
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
-            amount?: number | null;
-            /**
-             * @description Currency of the payment. Defaults to the team's currency.
-             * @enum {string|null}
-             */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            /** @description Whether proof of attempt is required for this stop */
-            enabled?: boolean | null;
-          } | null;
-          /**
-           * @description Deprecated. Prefer using the `allowedDrivers` field instead.
-           *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
-           */
-          driver?: string | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /**
-           * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
-           * @enum {string|null}
-           */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          /** @description Number of packages in the stop */
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          /** @description Notes for the stop */
-          notes?: string | null;
-          /** @description Client ID of the retailer in Spoke Connect */
-          circuitClientId?: string | null;
-          /** @description List of barcode IDs associated with this stop */
-          barcodes?: string[];
-          /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            pending: boolean;
-            stop: components["schemas"]["stopSchema"];
-          };
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description The plan or driver was not found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan's optimization is in progress. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      410: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Failed to create stop. Some related resources were deleted while the request was being processed.";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  updateLiveStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-        /** @description The stop id */
-        stopId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for updating a stop. All the values present in the request will update the stop value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description Recipient information for this stop */
-          recipient?: {
-            externalId?: string | null;
-            email?: string | null;
-            phone?: string | null;
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            products?: string[];
-            sellerOrderId?: string | null;
-            sellerName?: string | null;
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            amount?: number | null;
-            /** @enum {string|null} */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            enabled?: boolean | null;
-          } | null;
-          driver?: string | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /** @enum {string|null} */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          notes?: string | null;
-          barcodes?: string[];
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-          timing?: {
-            /** @description Time of day in hours and minutes. Use a 24 hour clock. */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day in hours and minutes. Use a 24 hour clock. */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            estimatedAttemptDuration?: number | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            pending: boolean;
-            stop: components["schemas"]["stopSchema"];
-          };
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan's optimization is in progress. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          };
-        };
-      };
-      /** @description The stop is unprocessable. */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message: "Stop cannot be edited" | string;
-            /** @enum {string} */
-            code: "stop_not_editable";
-          } | {
-            message:
-              | "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  importLiveStops: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-      };
-      cookie?: never;
-    };
-    /** @description An array of stops to import in batch. Supports a maximum of 100 stops per request. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-          address: {
-            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-            addressName?: string | null;
-            /** @description The first line of the address. */
-            addressLineOne?: string | null;
-            /** @description The second line of the address. */
-            addressLineTwo?: string | null;
-            /** @description The city of the address. */
-            city?: string | null;
-            /** @description The state of the address. */
-            state?: string | null;
-            /** @description The zip code of the address. */
-            zip?: string | null;
-            /** @description The country of the address. */
-            country?: string | null;
-            /** @description The latitude of the address in decimal degrees. */
-            latitude?: number | null;
-            /** @description The longitude of the address in decimal degrees. */
-            longitude?: number | null;
-          };
-          /** @description Timing information for this stop */
-          timing?: {
-            /** @description Time of day of the earliest time this stop should happen */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day of the latest time this stop should happen */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
-            estimatedAttemptDuration?: number | null;
-          } | null;
-          /** @description Recipient information for this stop */
-          recipient?: {
-            /** @description External ID of the recipient, as defined by the API user */
-            externalId?: string | null;
-            /** @description Email of the recipient */
-            email?: string | null;
-            /** @description Phone number of the recipient */
-            phone?: string | null;
-            /** @description Name of the recipient */
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            /** @description Products in this stop */
-            products?: string[];
-            /** @description Seller order ID */
-            sellerOrderId?: string | null;
-            /** @description Seller name */
-            sellerName?: string | null;
-            /** @description Seller website */
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
-            amount?: number | null;
-            /**
-             * @description Currency of the payment. Defaults to the team's currency.
-             * @enum {string|null}
-             */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            /** @description Whether proof of attempt is required for this stop */
-            enabled?: boolean | null;
-          } | null;
-          /**
-           * @description Deprecated. Prefer using the `allowedDrivers` field instead.
-           *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
-           */
-          driver?: string | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /**
-           * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
-           * @enum {string|null}
-           */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          /** @description Number of packages in the stop */
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          /** @description Notes for the stop */
-          notes?: string | null;
-          /** @description Client ID of the retailer in Spoke Connect */
-          circuitClientId?: string | null;
-          /** @description List of barcode IDs associated with this stop */
-          barcodes?: string[];
-          /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-        }[];
-      };
-    };
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The ids of the successfully imported stops */
-            success: string[];
-            /** @description The failed stops */
-            failed: {
-              error: {
-                /** @description The error that occurred during import */
-                message: string;
-              };
-              /** @description The stop that failed to import */
-              stop: {
-                /** @description The address of the stop that failed to import */
-                address: {
-                  addressName: string | null;
-                  addressLineOne: string | null;
-                  addressLineTwo: string | null;
-                  city: string | null;
-                  state: string | null;
-                  zip: string | null;
-                  country: string | null;
-                  latitude: number | null;
-                  longitude: number | null;
-                };
-                /** @description The recipient of the stop that failed to import */
-                recipient: {
-                  externalId: string | null;
-                  email: string | null;
-                  phone: string | null;
-                  name: string | null;
-                } | null;
-              };
-            }[];
-            pending: boolean;
-          };
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The plan is no longer accessible or one or more stops contain fields that require upgrading your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description A plan or a driver was not found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan's optimization is in progress. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      410: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Failed to create stop. Some related resources were deleted while the request was being processed.";
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  deleteLiveStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The plan id */
-        planId: string;
-        /** @description The stop id */
-        stopId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            pending: boolean;
-          };
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
-            /** @enum {string} */
-            code: "plan_inaccessible";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description The plan's optimization is in progress. */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Plan optimization in progress";
-            /** @enum {string} */
-            code: "plan_optimization_in_progress";
-          };
-        };
-      };
-      /** @description Failed to delete stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "Stop cannot be removed because it is already complete"
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  listDrivers: {
-    parameters: {
-      query?: {
-        /** @description The maximum number of drivers to return. */
-        maxPageSize?: number;
-        /** @description The page token to continue from. */
-        pageToken?: string;
-        /** @description The filter to apply to the list of drivers. The filter param is passed like this: `?filter[active]=true` or like this: `?filter.active=true` */
-        filter?: {
-          /**
-           * @description Filter by the active status of the driver. Inactive drivers will not be assigned to any routes.
-           * @enum {string}
-           */
-          active?: "true" | "false";
-        };
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The drivers. */
-            drivers: components["schemas"]["driverSchema"][];
-            /** @description The next page token. */
-            nextPageToken: null | string;
-          };
-        };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  createDriver: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** @description The request body for creating a driver. Even though `email` and `phone` are optional, you must provide exactly one of them */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description The driver's full name */
-          name?: string | null;
-          /** @description The name displayed for the driver in the UI */
-          displayName?: string | null;
-          /**
-           * Format: email
-           * @description Driver's email
-           */
-          email?: string | null;
-          /** @description Driver's phone number */
-          phone?: string | null;
-          /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
-          depots?: string[] | null;
-          /** @description Overrides for the driver route behavior. */
-          routeOverrides?: {
-            /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            startAddress?: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
-            } | null;
-            /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            endAddress?: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
-            } | null;
-            /** @description The start time for the driver's work day. */
-            startTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description The end time for the driver's work day. */
-            endTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description The maximum number of stops that can be allocated to this driver. */
-            maxStops?: number | null;
-            /**
-             * @description How fast this driver drives compared to the Team's average
-             * @default average
-             * @enum {string|null}
-             */
-            drivingSpeed?: "slower" | "average" | "faster" | null;
-            /**
-             * @description How fast this driver delivers compared to the Team's average
-             * @default average
-             * @enum {string|null}
-             */
-            deliverySpeed?: "slower" | "average" | "faster" | null;
-            /**
-             * @description The type of vehicle used by this driver
-             * @enum {string|null}
-             */
-            vehicleType?:
-              | "bike"
-              | "scooter"
-              | "car"
-              | "small_truck"
-              | "truck"
-              | "electric_cargo_bike"
-              | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The created driver */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["driverSchema"];
-        };
-      };
-      /** @description Failed to validate the request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Failed to create driver. */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occured when creating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getDriver: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The driver id */
-        driverId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested driver */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["driverSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The provided driver id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message: "Driver not found" | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  deleteDriver: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The driver id */
-        driverId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Driver removed successfully */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The provided driver id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message: "Driver not found" | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  updateDriver: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The driver id */
-        driverId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for updating a driver. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description The driver's full name */
-          name?: string | null;
-          /** @description The name displayed for the driver in the UI */
-          displayName?: string | null;
-          /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
-          depots?: string[] | null;
-          /** @description Overrides for the driver route behavior. */
-          routeOverrides?: {
-            /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            startAddress?: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
-            } | null;
-            /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            endAddress?: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
-            } | null;
-            /** @description The start time for the driver's work day. */
-            startTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description The end time for the driver's work day. */
-            endTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description The maximum number of stops that can be allocated to this driver. */
-            maxStops?: number | null;
-            /**
-             * @description How fast this driver drives compared to the Team's average
-             * @default average
-             * @enum {string|null}
-             */
-            drivingSpeed?: "slower" | "average" | "faster" | null;
-            /**
-             * @description How fast this driver delivers compared to the Team's average
-             * @default average
-             * @enum {string|null}
-             */
-            deliverySpeed?: "slower" | "average" | "faster" | null;
-            /**
-             * @description The type of vehicle used by this driver
-             * @enum {string|null}
-             */
-            vehicleType?:
-              | "bike"
-              | "scooter"
-              | "car"
-              | "small_truck"
-              | "truck"
-              | "electric_cargo_bike"
-              | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The updated driver */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["driverSchema"];
-        };
-      };
-      /** @description Failed to validate the request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Failed to update driver */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occured when updating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  importDrivers: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** @description An array of driver descriptions to be created in batch. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description The driver's full name */
-          name?: string | null;
-          /** @description The name displayed for the driver in the UI */
-          displayName?: string | null;
-          /**
-           * Format: email
-           * @description Driver's email
-           */
-          email?: string | null;
-          /** @description Driver's phone number */
-          phone?: string | null;
-          /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
-          depots?: string[] | null;
-          /** @description Overrides for the driver route behavior. */
-          routeOverrides?: {
-            /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            startAddress?: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
-            } | null;
-            /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            endAddress?: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
-            } | null;
-            /** @description The start time for the driver's work day. */
-            startTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description The end time for the driver's work day. */
-            endTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description The maximum number of stops that can be allocated to this driver. */
-            maxStops?: number | null;
-            /**
-             * @description How fast this driver drives compared to the Team's average
-             * @default average
-             * @enum {string|null}
-             */
-            drivingSpeed?: "slower" | "average" | "faster" | null;
-            /**
-             * @description How fast this driver delivers compared to the Team's average
-             * @default average
-             * @enum {string|null}
-             */
-            deliverySpeed?: "slower" | "average" | "faster" | null;
-            /**
-             * @description The type of vehicle used by this driver
-             * @enum {string|null}
-             */
-            vehicleType?:
-              | "bike"
-              | "scooter"
-              | "car"
-              | "small_truck"
-              | "truck"
-              | "electric_cargo_bike"
-              | null;
-          } | null;
-        }[];
-      };
-    };
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The ids of the successfully imported drivers */
-            success: string[];
-            /** @description The failed drivers */
-            failed: {
-              error: {
-                /** @description The error that occurred during import */
-                message: string;
-              };
-              /** @description The request body for creating a driver. Even though `email` and `phone` are optional, you must provide at least one of */
-              driver: {
-                /** @description The driver's full name */
-                name?: string | null;
-                /** @description The name displayed for the driver in the UI */
-                displayName?: string | null;
-                /** @description Driver's email */
-                email?: string | null;
-                /** @description Driver's phone number */
-                phone?: string | null;
-                /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
-                depots?: string[] | null;
-                routeOverrides?: {
-                  /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-                  startAddress?: {
-                    /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-                    addressName?: string | null;
-                    /** @description The first line of the address. */
-                    addressLineOne?: string | null;
-                    /** @description The second line of the address. */
-                    addressLineTwo?: string | null;
-                    /** @description The city of the address. */
-                    city?: string | null;
-                    /** @description The state of the address. */
-                    state?: string | null;
-                    /** @description The zip code of the address. */
-                    zip?: string | null;
-                    /** @description The country of the address. */
-                    country?: string | null;
-                    /** @description The latitude of the address in decimal degrees. */
-                    latitude?: number | null;
-                    /** @description The longitude of the address in decimal degrees. */
-                    longitude?: number | null;
-                  } | null;
-                  /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-                  endAddress?: {
-                    /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-                    addressName?: string | null;
-                    /** @description The first line of the address. */
-                    addressLineOne?: string | null;
-                    /** @description The second line of the address. */
-                    addressLineTwo?: string | null;
-                    /** @description The city of the address. */
-                    city?: string | null;
-                    /** @description The state of the address. */
-                    state?: string | null;
-                    /** @description The zip code of the address. */
-                    zip?: string | null;
-                    /** @description The country of the address. */
-                    country?: string | null;
-                    /** @description The latitude of the address in decimal degrees. */
-                    latitude?: number | null;
-                    /** @description The longitude of the address in decimal degrees. */
-                    longitude?: number | null;
-                  } | null;
-                  /** @description The start time for the driver's work day. */
-                  startTime?: {
-                    /** @description Hour of the day */
-                    hour: number;
-                    /** @description Minute of the hour */
-                    minute: number;
-                  } | null;
-                  /** @description The end time for the driver's work day. */
-                  endTime?: {
-                    /** @description Hour of the day */
-                    hour: number;
-                    /** @description Minute of the hour */
-                    minute: number;
-                  } | null;
-                  /** @description The maximum number of stops that can be allocated to this driver. */
-                  maxStops?: number | null;
-                  /** @description How fast this driver drives compared to the Team's average */
-                  drivingSpeed?: ("slower" | "average" | "faster") | null;
-                  /** @description How fast this driver delivers compared to the Team's average */
-                  deliverySpeed?: ("slower" | "average" | "faster") | null;
-                  /** @description The type of vehicle used by this driver */
-                  vehicleType?:
-                    | (
-                      | "bike"
-                      | "scooter"
-                      | "car"
-                      | "small_truck"
-                      | "truck"
-                      | "electric_cargo_bike"
-                    )
-                    | null;
-                } | null;
-              };
-            }[];
-          };
-        };
-      };
-      /** @description Failed to validate the request */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Failed to import drivers. */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occured when importing drivers, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  listDepots: {
-    parameters: {
-      query?: {
-        /** @description The page token to continue from. */
-        pageToken?: string;
-        /** @description The maximum number of depots to return. */
-        maxPageSize?: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The depots. */
-            depots: components["schemas"]["depotSchema"][];
-            /** @description The next page token. */
-            nextPageToken: null | string;
-          };
-        };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getDepot: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The depot id */
-        depotId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested depot */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["depotSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The provided depot id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Depot not found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getRoute: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The route id */
-        routeId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested route */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["routeSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Route is no longer accessible due to data access restrictions. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "Route is no longer accessible due to data access restrictions.";
-            /** @enum {string} */
-            code: "route_inaccessible";
-          };
-        };
-      };
-      /** @description The provided route id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Route not found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  cancelOperation: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The ID of the operation to cancel. */
-        operationId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The operation was canceled successfully */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["operationSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "The operation was not found.";
-            /** @enum {string} */
-            code: "operation_not_found";
-          };
-        };
-      };
-      /** @description The default error model */
-      409: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message:
-              "The operation cannot be canceled because it is already done.";
-            /** @enum {string} */
-            code: "operation_already_done";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getOperation: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The ID of the operation to cancel. */
-        operationId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested operation */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["operationSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "The operation was not found.";
-            /** @enum {string} */
-            code: "operation_not_found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  listOperations: {
-    parameters: {
-      query?: {
-        /** @description The page token to continue from. */
-        pageToken?: string;
-        /** @description The maximum number of operations to return per page. */
-        maxPageSize?: number;
-        /** @description The filter to apply to the list of operations. */
-        filter?: {
-          /** @description Filter by whether the operation is done. */
-          done?: "true" | "false";
-          /**
-           * @description The type of the operation. Use this to filter which operations to get when listing operations. If not specified, all operations are returned. If specified, only operations of the specified type are returned.
-           * @enum {string}
-           */
-          type?: "plan_optimization";
-        };
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The operations. */
-            operations: components["schemas"]["operationSchema"][];
-            /** @description The next page token. */
-            nextPageToken: null | string;
-          };
-        };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  getUnassignedStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The unassigned stop id */
-        unassignedStopId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The requested unassigned stop */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["unassignedStopSchema"];
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The provided unassigned stop id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            message: "Unassigned stop not found";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  deleteUnassignedStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The unassigned stop id */
-        unassignedStopId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Unassigned Stop deleted successfully */
-      204: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content?: never;
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  updateUnassignedStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The unassigned stop id */
-        unassignedStopId: string;
-      };
-      cookie?: never;
-    };
-    /** @description The request body for updating an unassigned stop. All the values present in the request will update the unassigned stop value. If you wish to update only certain fields, only set those and do not set the others. Any fields not set will not be updated. */
-    requestBody?: {
-      content: {
-        "application/json": {
-          /** @description Recipient information for this stop */
-          recipient?: {
-            externalId?: string | null;
-            email?: string | null;
-            phone?: string | null;
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            products?: string[];
-            sellerOrderId?: string | null;
-            sellerName?: string | null;
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            amount?: number | null;
-            /** @enum {string|null} */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            enabled?: boolean | null;
-          } | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /** @enum {string|null} */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          notes?: string | null;
-          barcodes?: string[];
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-          timing?: {
-            /** @description Time of day in hours and minutes. Use a 24 hour clock. */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day in hours and minutes. Use a 24 hour clock. */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            estimatedAttemptDuration?: number | null;
-          } | null;
-          depot?: string | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The updated unassigned stop */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["unassignedStopSchema"];
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The request contains fields that are not supported by your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description Not Found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  listUnassignedStops: {
-    parameters: {
-      query?: {
-        /** @description The page token to continue from. */
-        pageToken?: string;
-        /** @description The maximum number of unassigned stops to return per page. */
-        maxPageSize?: number;
-        /** @description The filter to apply to the list of unassigned stops. */
-        filter?: {
-          /** @description Filter by the `recipient.externalId` field, exact match */
-          externalId?: string;
-        };
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The unassignedStops. */
-            unassignedStops: components["schemas"]["unassignedStopSchema"][];
-            /** @description The next page token. */
-            nextPageToken: null | string;
-          };
-        };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  createUnassignedStop: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** @description The request body for creating an unassigned stop. Address is a required field, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set (and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be. The depotId field is not required, but will default to the main depot of the team if not provided, be sure to provide it if you want to use a different depot. */
-    requestBody: {
-      content: {
-        "application/json": {
-          /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-          address: {
-            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-            addressName?: string | null;
-            /** @description The first line of the address. */
-            addressLineOne?: string | null;
-            /** @description The second line of the address. */
-            addressLineTwo?: string | null;
-            /** @description The city of the address. */
-            city?: string | null;
-            /** @description The state of the address. */
-            state?: string | null;
-            /** @description The zip code of the address. */
-            zip?: string | null;
-            /** @description The country of the address. */
-            country?: string | null;
-            /** @description The latitude of the address in decimal degrees. */
-            latitude?: number | null;
-            /** @description The longitude of the address in decimal degrees. */
-            longitude?: number | null;
-          };
-          /** @description The Depot ID that this unassigned stop belongs to, in the format `depot/<id>`. If not provided, or null, it will default to the team's main depot. */
-          depot?: string | null;
-          /** @description Timing information for this stop */
-          timing?: {
-            /** @description Time of day of the earliest time this stop should happen */
-            earliestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Time of day of the latest time this stop should happen */
-            latestAttemptTime?: {
-              /** @description Hour of the day */
-              hour: number;
-              /** @description Minute of the hour */
-              minute: number;
-            } | null;
-            /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
-            estimatedAttemptDuration?: number | null;
-          } | null;
-          /** @description Recipient information for this stop */
-          recipient?: {
-            /** @description External ID of the recipient, as defined by the API user */
-            externalId?: string | null;
-            /** @description Email of the recipient */
-            email?: string | null;
-            /** @description Phone number of the recipient */
-            phone?: string | null;
-            /** @description Name of the recipient */
-            name?: string | null;
-          } | null;
-          /** @description Order information for this stop */
-          orderInfo?: {
-            /** @description Products in this stop */
-            products?: string[];
-            /** @description Seller order ID */
-            sellerOrderId?: string | null;
-            /** @description Seller name */
-            sellerName?: string | null;
-            /** @description Seller website */
-            sellerWebsite?: string | null;
-          } | null;
-          /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-          paymentOnDelivery?: {
-            /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
-            amount?: number | null;
-            /**
-             * @description Currency of the payment. Defaults to the team's currency.
-             * @enum {string|null}
-             */
-            currency?:
-              | "AED"
-              | "ARS"
-              | "AUD"
-              | "BRL"
-              | "CAD"
-              | "CHF"
-              | "CLP"
-              | "CNY"
-              | "COP"
-              | "DKK"
-              | "EGP"
-              | "EUR"
-              | "GBP"
-              | "HKD"
-              | "ILS"
-              | "INR"
-              | "JPY"
-              | "KRW"
-              | "MYR"
-              | "MXN"
-              | "NOK"
-              | "NZD"
-              | "PEN"
-              | "RON"
-              | "RUB"
-              | "SAR"
-              | "SEK"
-              | "SGD"
-              | "TRY"
-              | "USD"
-              | "UYU"
-              | "ZAR"
-              | null;
-          } | null;
-          /** @description Proof of attempt requirement settings for this stop */
-          proofOfAttemptRequirements?: {
-            /** @description Whether proof of attempt is required for this stop */
-            enabled?: boolean | null;
-          } | null;
-          /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. */
-          allowedDrivers?: string[] | null;
-          /**
-           * @description Activity type
-           * @default delivery
-           * @enum {string|null}
-           */
-          activity?: "delivery" | "pickup" | null;
-          /**
-           * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
-           * @enum {string|null}
-           */
-          optimizationOrder?: "first" | "last" | "default" | null;
-          /** @description Number of packages in the stop */
-          packageCount?: number | null;
-          /** @description Weight information for this stop. */
-          weight?: {
-            /** @description The weight amount for this stop. */
-            amount: number;
-            /**
-             * @description The weight unit in which the amount is specified.
-             * @enum {string}
-             */
-            unit: "kilogram" | "pound" | "metric-ton";
-          } | null;
-          /** @description Notes for the stop */
-          notes?: string | null;
-          /** @description Client ID of the retailer in Spoke Connect */
-          circuitClientId?: string | null;
-          /** @description List of barcode IDs associated with this stop */
-          barcodes?: string[];
-          /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
-          customProperties?: {
-            [key: string]: string | null;
-          } | null;
-        };
-      };
-    };
-    responses: {
-      /** @description The created unassignedStop */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["unassignedStopSchema"];
-        };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The request contains fields that are not supported by your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description The provided driver id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message: "Driver not found" | string;
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occurred when creating the unassigned stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
-  importUnassignedStops: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": {
-          /** @description An array of unassigned stops to import in batch. Supports a maximum of 100 unassigned stops per request. Note that the `depot` is shared across all unassigned stops in the request, and thus should not be provided for individual unassigned stops. That is because the `depot` location is used to bias the geocoding results of the stops. */
-          unassignedStops: {
-            /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
-            address: {
-              /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
-              addressName?: string | null;
-              /** @description The first line of the address. */
-              addressLineOne?: string | null;
-              /** @description The second line of the address. */
-              addressLineTwo?: string | null;
-              /** @description The city of the address. */
-              city?: string | null;
-              /** @description The state of the address. */
-              state?: string | null;
-              /** @description The zip code of the address. */
-              zip?: string | null;
-              /** @description The country of the address. */
-              country?: string | null;
-              /** @description The latitude of the address in decimal degrees. */
-              latitude?: number | null;
-              /** @description The longitude of the address in decimal degrees. */
-              longitude?: number | null;
             };
-            /** @description Timing information for this stop */
-            timing?: {
-              /** @description Time of day of the earliest time this stop should happen */
-              earliestAttemptTime?: {
-                /** @description Hour of the day */
-                hour: number;
-                /** @description Minute of the hour */
-                minute: number;
-              } | null;
-              /** @description Time of day of the latest time this stop should happen */
-              latestAttemptTime?: {
-                /** @description Hour of the day */
-                hour: number;
-                /** @description Minute of the hour */
-                minute: number;
-              } | null;
-              /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
-              estimatedAttemptDuration?: number | null;
-            } | null;
-            /** @description Recipient information for this stop */
-            recipient?: {
-              /** @description External ID of the recipient, as defined by the API user */
-              externalId?: string | null;
-              /** @description Email of the recipient */
-              email?: string | null;
-              /** @description Phone number of the recipient */
-              phone?: string | null;
-              /** @description Name of the recipient */
-              name?: string | null;
-            } | null;
-            /** @description Order information for this stop */
-            orderInfo?: {
-              /** @description Products in this stop */
-              products?: string[];
-              /** @description Seller order ID */
-              sellerOrderId?: string | null;
-              /** @description Seller name */
-              sellerName?: string | null;
-              /** @description Seller website */
-              sellerWebsite?: string | null;
-            } | null;
-            /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
-            paymentOnDelivery?: {
-              /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
-              amount?: number | null;
-              /**
-               * @description Currency of the payment. Defaults to the team's currency.
-               * @enum {string|null}
-               */
-              currency?:
-                | "AED"
-                | "ARS"
-                | "AUD"
-                | "BRL"
-                | "CAD"
-                | "CHF"
-                | "CLP"
-                | "CNY"
-                | "COP"
-                | "DKK"
-                | "EGP"
-                | "EUR"
-                | "GBP"
-                | "HKD"
-                | "ILS"
-                | "INR"
-                | "JPY"
-                | "KRW"
-                | "MYR"
-                | "MXN"
-                | "NOK"
-                | "NZD"
-                | "PEN"
-                | "RON"
-                | "RUB"
-                | "SAR"
-                | "SEK"
-                | "SGD"
-                | "TRY"
-                | "USD"
-                | "UYU"
-                | "ZAR"
-                | null;
-            } | null;
-            /** @description Proof of attempt requirement settings for this stop */
-            proofOfAttemptRequirements?: {
-              /** @description Whether proof of attempt is required for this stop */
-              enabled?: boolean | null;
-            } | null;
-            /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. */
-            allowedDrivers?: string[] | null;
-            /**
-             * @description Activity type
-             * @default delivery
-             * @enum {string|null}
-             */
-            activity?: "delivery" | "pickup" | null;
-            /**
-             * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
-             * @enum {string|null}
-             */
-            optimizationOrder?: "first" | "last" | "default" | null;
-            /** @description Number of packages in the stop */
-            packageCount?: number | null;
-            /** @description Weight information for this stop. */
-            weight?: {
-              /** @description The weight amount for this stop. */
-              amount: number;
-              /**
-               * @description The weight unit in which the amount is specified.
-               * @enum {string}
-               */
-              unit: "kilogram" | "pound" | "metric-ton";
-            } | null;
-            /** @description Notes for the stop */
-            notes?: string | null;
-            /** @description Client ID of the retailer in Spoke Connect */
-            circuitClientId?: string | null;
-            /** @description List of barcode IDs associated with this stop */
-            barcodes?: string[];
-            /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
-            customProperties?: {
-              [key: string]: string | null;
-            } | null;
-          }[];
-          /** @description The Depot ID the unassigned stops in the batch belong to, in the format `depot/<id>`. This is used to bias the geocoding results of the unassigned stops, so every unassigned stop in the batch should belong to the same depot. If not provided, or null, it will default to the team's main depot. */
-          depot?: string | null;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-    responses: {
-      /** @description Default Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The ids of the successfully imported unassigned stops */
-            success: string[];
-            /** @description The failed unassigned stops */
-            failed: {
-              error: {
-                /** @description The error that occurred during import */
-                message: string;
-              };
-              /** @description The unassigned stop that failed to import */
-              unassignedStop: {
-                /** @description The address of the unassigned stop that failed to import */
-                address: {
-                  addressName: string | null;
-                  addressLineOne: string | null;
-                  addressLineTwo: string | null;
-                  city: string | null;
-                  state: string | null;
-                  zip: string | null;
-                  country: string | null;
-                  latitude: number | null;
-                  longitude: number | null;
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
                 };
-                /** @description The recipient of the unassigned stop that failed to import */
-                recipient: {
-                  externalId: string | null;
-                  email: string | null;
-                  phone: string | null;
-                  name: string | null;
-                } | null;
-              };
-            }[];
-          };
+                content: {
+                    "application/json": {
+                        /** @description The plans list. */
+                        plans: components["schemas"]["planSchema"][];
+                        /** @description The next page token. */
+                        nextPageToken: null | string;
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
         };
-      };
-      /** @description The request has errors. Either syntatic or semantic */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The request contains fields that are not supported by your team subscription/settings. */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          } | {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "vehicle_capacity_disabled";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/settings/team-profile";
-          };
-        };
-      };
-      /** @description A depot or a driver was not found */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-          };
-        };
-      };
-      /** @description Failed to create stop */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message:
-              | "An error occurred when creating the unassigned stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid."
-              | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
     };
-  };
-  listCustomStopProperties: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description The set of custom stop properties. */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    createPlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": {
+        /** @description The request body for creating a plan. */
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** @description The title of the plan. */
+                    title: string;
+                    /** @description The date the plan starts. Does not accept dates that are too far in the future or past. */
+                    starts: {
+                        /** @description The day of the date. */
+                        day: number;
+                        /** @description The month of the date. */
+                        month: number;
+                        /** @description The year of the date. */
+                        year: number;
+                    };
+                    /**
+                     * @description The drivers IDs of the plan, in the format `drivers/<id>`, duplicates will be ignored
+                     * @default []
+                     */
+                    drivers?: string[];
+                    /** @description The depot id, in the format `depots/<id>`. If not provided, the team's Main Depot will be used. */
+                    depot?: string | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The created plan */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["planSchema"];
+                };
+            };
+            /** @description Failed to validate the request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The depot or driver could not be found. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Depot not found";
+                    } | {
+                        message: "Driver not found" | string;
+                    };
+                };
+            };
+            /** @description Depot not found */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Depot not found";
+                        /** @enum {string} */
+                        code: "depot_not_found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getPlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested plan */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["planSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    deletePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Plan deleted successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    updatePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * @description The request body for updating a plan. All the values present in the request will update the plan value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated.
+         *
+         *     **Important:** Notice that the `drivers` Array will be completely replaced. If a single driver is provided in the request, the plan will have all other previous drivers discarded.
+         */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description The title of the plan. */
+                    title?: string;
+                    /** @description The date the plan starts. Does not accept dates that are too far in the future or past. */
+                    starts?: {
+                        /** @description The day of the date. */
+                        day: number;
+                        /** @description The month of the date. */
+                        month: number;
+                        /** @description The year of the date. */
+                        year: number;
+                    };
+                    /** @description The drivers IDs of the plan, in the format `drivers/<id>`, duplicates will be ignored */
+                    drivers?: string[];
+                    /** @description The depot id, in the format `depots/<id>`. If not provided, the team's Main Depot will be used. */
+                    depot?: string | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The updated plan */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["planSchema"];
+                };
+            };
+            /** @description Failed to validate the request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The plan, depot, or driver could not be found. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    } | {
+                        /** @enum {string} */
+                        message: "Depot not found";
+                    } | {
+                        message: "Driver not found" | string;
+                    };
+                };
+            };
+            /** @description The plan is not writable. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is not writable";
+                        /** @enum {string} */
+                        code: "plan_not_writable";
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    optimizePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The created plan_optimization operation. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["operationSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description The plan is not writable, an optimization is already in progress, there are no drivers, or there is a problem with the depot. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan already optimized";
+                        /** @enum {string} */
+                        code: "plan_already_optimized";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan has no drivers. Either the plan's depot has no drivers, if the optimization is for minimizing drivers, or the plan has no assigned drivers.";
+                        /** @enum {string} */
+                        code: "no_drivers_available";
+                    } | {
+                        /** @enum {string} */
+                        message: "Please set an end time or max stops per driver for the plan's depot when optimizing to minimize drivers.";
+                        /** @enum {string} */
+                        code: "no_end_time_and_max_stops_per_driver";
+                    } | {
+                        /** @enum {string} */
+                        message: "Depot not found";
+                        /** @enum {string} */
+                        code: "depot_not_found";
+                    } | {
+                        /** @enum {string} */
+                        message: "Please set a start location for the plan's depot.";
+                        /** @enum {string} */
+                        code: "depot_missing_start_address";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    distributePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The distributed plan */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["planSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description The plan is not yet optimized, is optimizing, was already distributed or was modified whilst processing request. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan already distributed";
+                        /** @enum {string} */
+                        code: "plan_already_distributed";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan not optimized";
+                        /** @enum {string} */
+                        code: "plan_not_optimized";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan was modified by a concurrent request. Please retry your request.";
+                        /** @enum {string} */
+                        code: "plan_concurrent_modification";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    reoptimizePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for reoptimize a plan. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /**
+                     * @description The type of optimization to use
+                     * @default reorder_changed_stops
+                     * @enum {string}
+                     */
+                    optimizationType?: "reorder_changed_stops" | "reorder_all_stops" | "redistribute_stops_between_drivers";
+                };
+            };
+        };
+        responses: {
+            /** @description The created plan_optimization operation. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["operationSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description The plan is not being edited, an optimization is already in progress, there are no drivers, or there is a problem with the depot. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan already optimized";
+                        /** @enum {string} */
+                        code: "plan_already_optimized";
+                    } | {
+                        /** @enum {string} */
+                        message: "Only `reorder_changed_stops` optimization type is supported when the plan is already distributed.";
+                        /** @enum {string} */
+                        code: "plan_optimization_not_supported";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan has no drivers. Either the plan's depot has no drivers, if the optimization is for minimizing drivers, or the plan has no assigned drivers.";
+                        /** @enum {string} */
+                        code: "no_drivers_available";
+                    } | {
+                        /** @enum {string} */
+                        message: "Please set an end time or max stops per driver for the plan's depot when optimizing to minimize drivers.";
+                        /** @enum {string} */
+                        code: "no_end_time_and_max_stops_per_driver";
+                    } | {
+                        /** @enum {string} */
+                        message: "Depot not found";
+                        /** @enum {string} */
+                        code: "depot_not_found";
+                    } | {
+                        /** @enum {string} */
+                        message: "Please set a start location for the plan's depot.";
+                        /** @enum {string} */
+                        code: "depot_missing_start_address";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    redistributePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The distributed plan */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["planSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description The plan is not yet optimized, is optimizing, was already distributed or was modified whilst processing request. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan already distributed";
+                        /** @enum {string} */
+                        code: "plan_already_distributed";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan not optimized";
+                        /** @enum {string} */
+                        code: "plan_not_optimized";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan was modified by a concurrent request. Please retry your request.";
+                        /** @enum {string} */
+                        code: "plan_concurrent_modification";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    savePlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Plan saved successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description The plan is not yet optimized, an optimization is in progress or it was modified whilst processing request. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not optimized";
+                        /** @enum {string} */
+                        code: "plan_not_optimized";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    } | {
+                        /** @enum {string} */
+                        message: "Plan was modified by a concurrent request. Please retry your request.";
+                        /** @enum {string} */
+                        code: "plan_concurrent_modification";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    listStops: {
+        parameters: {
+            query?: {
+                /** @description The page token, if any. */
+                pageToken?: string;
+                /** @description The max page size. */
+                maxPageSize?: number;
+                /** @description The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo` */
+                filter?: {
+                    /** @description Filter by the `recipient.externalId` field, exact match */
+                    externalId?: string;
+                };
+            };
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The stops list. */
+                        stops: components["schemas"]["stopSchema"][];
+                        /** @description The next page token. */
+                        nextPageToken: null | string;
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided plan id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan not found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    createStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be. */
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                    address: {
+                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                        addressName?: string | null;
+                        /** @description The first line of the address. */
+                        addressLineOne?: string | null;
+                        /** @description The second line of the address. */
+                        addressLineTwo?: string | null;
+                        /** @description The city of the address. */
+                        city?: string | null;
+                        /** @description The state of the address. */
+                        state?: string | null;
+                        /** @description The zip code of the address. */
+                        zip?: string | null;
+                        /** @description The country of the address. */
+                        country?: string | null;
+                        /** @description The latitude of the address in decimal degrees. */
+                        latitude?: number | null;
+                        /** @description The longitude of the address in decimal degrees. */
+                        longitude?: number | null;
+                    };
+                    /** @description Timing information for this stop */
+                    timing?: {
+                        /** @description Time of day of the earliest time this stop should happen */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day of the latest time this stop should happen */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        /** @description External ID of the recipient, as defined by the API user */
+                        externalId?: string | null;
+                        /** @description Email of the recipient */
+                        email?: string | null;
+                        /** @description Phone number of the recipient */
+                        phone?: string | null;
+                        /** @description Name of the recipient */
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        /** @description Products in this stop */
+                        products?: string[];
+                        /** @description Seller order ID */
+                        sellerOrderId?: string | null;
+                        /** @description Seller name */
+                        sellerName?: string | null;
+                        /** @description Seller website */
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
+                        amount?: number | null;
+                        /**
+                         * @description Currency of the payment. Defaults to the team's currency.
+                         * @enum {string|null}
+                         */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        /** @description Whether proof of attempt is required for this stop */
+                        enabled?: boolean | null;
+                    } | null;
+                    /**
+                     * @description Deprecated. Prefer using the `allowedDrivers` field instead.
+                     *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
+                     */
+                    driver?: string | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /**
+                     * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
+                     * @enum {string|null}
+                     */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    /** @description Number of packages in the stop */
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    /** @description Notes for the stop */
+                    notes?: string | null;
+                    /** @description Client ID of the retailer in Spoke Connect */
+                    circuitClientId?: string | null;
+                    /** @description List of barcode IDs associated with this stop */
+                    barcodes?: string[];
+                    /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The created stop */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["stopSchema"];
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description The plan or driver was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan is not writable. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is not writable";
+                        /** @enum {string} */
+                        code: "plan_not_writable";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Failed to create stop. Some related resources were deleted while the request was being processed.";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    importStops: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        /** @description An array of stops to import in batch. Supports a maximum of 100 stops per request. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                    address: {
+                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                        addressName?: string | null;
+                        /** @description The first line of the address. */
+                        addressLineOne?: string | null;
+                        /** @description The second line of the address. */
+                        addressLineTwo?: string | null;
+                        /** @description The city of the address. */
+                        city?: string | null;
+                        /** @description The state of the address. */
+                        state?: string | null;
+                        /** @description The zip code of the address. */
+                        zip?: string | null;
+                        /** @description The country of the address. */
+                        country?: string | null;
+                        /** @description The latitude of the address in decimal degrees. */
+                        latitude?: number | null;
+                        /** @description The longitude of the address in decimal degrees. */
+                        longitude?: number | null;
+                    };
+                    /** @description Timing information for this stop */
+                    timing?: {
+                        /** @description Time of day of the earliest time this stop should happen */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day of the latest time this stop should happen */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        /** @description External ID of the recipient, as defined by the API user */
+                        externalId?: string | null;
+                        /** @description Email of the recipient */
+                        email?: string | null;
+                        /** @description Phone number of the recipient */
+                        phone?: string | null;
+                        /** @description Name of the recipient */
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        /** @description Products in this stop */
+                        products?: string[];
+                        /** @description Seller order ID */
+                        sellerOrderId?: string | null;
+                        /** @description Seller name */
+                        sellerName?: string | null;
+                        /** @description Seller website */
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
+                        amount?: number | null;
+                        /**
+                         * @description Currency of the payment. Defaults to the team's currency.
+                         * @enum {string|null}
+                         */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        /** @description Whether proof of attempt is required for this stop */
+                        enabled?: boolean | null;
+                    } | null;
+                    /**
+                     * @description Deprecated. Prefer using the `allowedDrivers` field instead.
+                     *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
+                     */
+                    driver?: string | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /**
+                     * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
+                     * @enum {string|null}
+                     */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    /** @description Number of packages in the stop */
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    /** @description Notes for the stop */
+                    notes?: string | null;
+                    /** @description Client ID of the retailer in Spoke Connect */
+                    circuitClientId?: string | null;
+                    /** @description List of barcode IDs associated with this stop */
+                    barcodes?: string[];
+                    /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                }[];
+            };
+        };
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The ids of the successfully imported stops */
+                        success: string[];
+                        /** @description The failed stops */
+                        failed: {
+                            error: {
+                                /** @description The error that occurred during import */
+                                message: string;
+                            };
+                            /** @description The stop that failed to import */
+                            stop: {
+                                /** @description The address of the stop that failed to import */
+                                address: {
+                                    addressName: string | null;
+                                    addressLineOne: string | null;
+                                    addressLineTwo: string | null;
+                                    city: string | null;
+                                    state: string | null;
+                                    zip: string | null;
+                                    country: string | null;
+                                    latitude: number | null;
+                                    longitude: number | null;
+                                };
+                                /** @description The recipient of the stop that failed to import */
+                                recipient: {
+                                    externalId: string | null;
+                                    email: string | null;
+                                    phone: string | null;
+                                    name: string | null;
+                                } | null;
+                            };
+                        }[];
+                    };
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The plan is no longer accessible or one or more stops contain fields that require upgrading your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description A plan or a driver was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan is not writable. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is not writable";
+                        /** @enum {string} */
+                        code: "plan_not_writable";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Failed to create stop. Some related resources were deleted while the request was being processed.";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+                /** @description The stop id */
+                stopId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested stop */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["stopSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    deleteStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+                /** @description The stop id */
+                stopId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Stop deleted successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan is not writable. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is not writable";
+                        /** @enum {string} */
+                        code: "plan_not_writable";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+                /** @description The stop id */
+                stopId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for updating a stop. All the values present in the request will update the stop value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        externalId?: string | null;
+                        email?: string | null;
+                        phone?: string | null;
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        products?: string[];
+                        sellerOrderId?: string | null;
+                        sellerName?: string | null;
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        amount?: number | null;
+                        /** @enum {string|null} */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        enabled?: boolean | null;
+                    } | null;
+                    driver?: string | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /** @enum {string|null} */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    notes?: string | null;
+                    barcodes?: string[];
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                    timing?: {
+                        /** @description Time of day in hours and minutes. Use a 24 hour clock. */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day in hours and minutes. Use a 24 hour clock. */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The updated stop */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["stopSchema"];
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan is not writable. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is not writable";
+                        /** @enum {string} */
+                        code: "plan_not_writable";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    createLiveStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be. */
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                    address: {
+                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                        addressName?: string | null;
+                        /** @description The first line of the address. */
+                        addressLineOne?: string | null;
+                        /** @description The second line of the address. */
+                        addressLineTwo?: string | null;
+                        /** @description The city of the address. */
+                        city?: string | null;
+                        /** @description The state of the address. */
+                        state?: string | null;
+                        /** @description The zip code of the address. */
+                        zip?: string | null;
+                        /** @description The country of the address. */
+                        country?: string | null;
+                        /** @description The latitude of the address in decimal degrees. */
+                        latitude?: number | null;
+                        /** @description The longitude of the address in decimal degrees. */
+                        longitude?: number | null;
+                    };
+                    /** @description Timing information for this stop */
+                    timing?: {
+                        /** @description Time of day of the earliest time this stop should happen */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day of the latest time this stop should happen */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        /** @description External ID of the recipient, as defined by the API user */
+                        externalId?: string | null;
+                        /** @description Email of the recipient */
+                        email?: string | null;
+                        /** @description Phone number of the recipient */
+                        phone?: string | null;
+                        /** @description Name of the recipient */
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        /** @description Products in this stop */
+                        products?: string[];
+                        /** @description Seller order ID */
+                        sellerOrderId?: string | null;
+                        /** @description Seller name */
+                        sellerName?: string | null;
+                        /** @description Seller website */
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
+                        amount?: number | null;
+                        /**
+                         * @description Currency of the payment. Defaults to the team's currency.
+                         * @enum {string|null}
+                         */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        /** @description Whether proof of attempt is required for this stop */
+                        enabled?: boolean | null;
+                    } | null;
+                    /**
+                     * @description Deprecated. Prefer using the `allowedDrivers` field instead.
+                     *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
+                     */
+                    driver?: string | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /**
+                     * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
+                     * @enum {string|null}
+                     */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    /** @description Number of packages in the stop */
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    /** @description Notes for the stop */
+                    notes?: string | null;
+                    /** @description Client ID of the retailer in Spoke Connect */
+                    circuitClientId?: string | null;
+                    /** @description List of barcode IDs associated with this stop */
+                    barcodes?: string[];
+                    /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        pending: boolean;
+                        stop: components["schemas"]["stopSchema"];
+                    };
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description The plan or driver was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan's optimization is in progress. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Failed to create stop. Some related resources were deleted while the request was being processed.";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateLiveStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+                /** @description The stop id */
+                stopId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for updating a stop. All the values present in the request will update the stop value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        externalId?: string | null;
+                        email?: string | null;
+                        phone?: string | null;
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        products?: string[];
+                        sellerOrderId?: string | null;
+                        sellerName?: string | null;
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        amount?: number | null;
+                        /** @enum {string|null} */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        enabled?: boolean | null;
+                    } | null;
+                    driver?: string | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /** @enum {string|null} */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    notes?: string | null;
+                    barcodes?: string[];
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                    timing?: {
+                        /** @description Time of day in hours and minutes. Use a 24 hour clock. */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day in hours and minutes. Use a 24 hour clock. */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        pending: boolean;
+                        stop: components["schemas"]["stopSchema"];
+                    };
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan's optimization is in progress. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    };
+                };
+            };
+            /** @description The stop is unprocessable. */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "Stop cannot be edited" | string;
+                        /** @enum {string} */
+                        code: "stop_not_editable";
+                    } | {
+                        message: "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    importLiveStops: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+            };
+            cookie?: never;
+        };
+        /** @description An array of stops to import in batch. Supports a maximum of 100 stops per request. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                    address: {
+                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                        addressName?: string | null;
+                        /** @description The first line of the address. */
+                        addressLineOne?: string | null;
+                        /** @description The second line of the address. */
+                        addressLineTwo?: string | null;
+                        /** @description The city of the address. */
+                        city?: string | null;
+                        /** @description The state of the address. */
+                        state?: string | null;
+                        /** @description The zip code of the address. */
+                        zip?: string | null;
+                        /** @description The country of the address. */
+                        country?: string | null;
+                        /** @description The latitude of the address in decimal degrees. */
+                        latitude?: number | null;
+                        /** @description The longitude of the address in decimal degrees. */
+                        longitude?: number | null;
+                    };
+                    /** @description Timing information for this stop */
+                    timing?: {
+                        /** @description Time of day of the earliest time this stop should happen */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day of the latest time this stop should happen */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        /** @description External ID of the recipient, as defined by the API user */
+                        externalId?: string | null;
+                        /** @description Email of the recipient */
+                        email?: string | null;
+                        /** @description Phone number of the recipient */
+                        phone?: string | null;
+                        /** @description Name of the recipient */
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        /** @description Products in this stop */
+                        products?: string[];
+                        /** @description Seller order ID */
+                        sellerOrderId?: string | null;
+                        /** @description Seller name */
+                        sellerName?: string | null;
+                        /** @description Seller website */
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
+                        amount?: number | null;
+                        /**
+                         * @description Currency of the payment. Defaults to the team's currency.
+                         * @enum {string|null}
+                         */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        /** @description Whether proof of attempt is required for this stop */
+                        enabled?: boolean | null;
+                    } | null;
+                    /**
+                     * @description Deprecated. Prefer using the `allowedDrivers` field instead.
+                     *     Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.
+                     */
+                    driver?: string | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /**
+                     * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
+                     * @enum {string|null}
+                     */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    /** @description Number of packages in the stop */
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    /** @description Notes for the stop */
+                    notes?: string | null;
+                    /** @description Client ID of the retailer in Spoke Connect */
+                    circuitClientId?: string | null;
+                    /** @description List of barcode IDs associated with this stop */
+                    barcodes?: string[];
+                    /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                }[];
+            };
+        };
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The ids of the successfully imported stops */
+                        success: string[];
+                        /** @description The failed stops */
+                        failed: {
+                            error: {
+                                /** @description The error that occurred during import */
+                                message: string;
+                            };
+                            /** @description The stop that failed to import */
+                            stop: {
+                                /** @description The address of the stop that failed to import */
+                                address: {
+                                    addressName: string | null;
+                                    addressLineOne: string | null;
+                                    addressLineTwo: string | null;
+                                    city: string | null;
+                                    state: string | null;
+                                    zip: string | null;
+                                    country: string | null;
+                                    latitude: number | null;
+                                    longitude: number | null;
+                                };
+                                /** @description The recipient of the stop that failed to import */
+                                recipient: {
+                                    externalId: string | null;
+                                    email: string | null;
+                                    phone: string | null;
+                                    name: string | null;
+                                } | null;
+                            };
+                        }[];
+                        pending: boolean;
+                    };
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The plan is no longer accessible or one or more stops contain fields that require upgrading your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description A plan or a driver was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan's optimization is in progress. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Failed to create stop. Some related resources were deleted while the request was being processed.";
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    deleteLiveStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The plan id */
+                planId: string;
+                /** @description The stop id */
+                stopId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        pending: boolean;
+                    };
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.";
+                        /** @enum {string} */
+                        code: "plan_inaccessible";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description The plan's optimization is in progress. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Plan optimization in progress";
+                        /** @enum {string} */
+                        code: "plan_optimization_in_progress";
+                    };
+                };
+            };
+            /** @description Failed to delete stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "Stop cannot be removed because it is already complete" | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    listDrivers: {
+        parameters: {
+            query?: {
+                /** @description The maximum number of drivers to return. */
+                maxPageSize?: number;
+                /** @description The page token to continue from. */
+                pageToken?: string;
+                /** @description The filter to apply to the list of drivers. The filter param is passed like this: `?filter[active]=true` or like this: `?filter.active=true` */
+                filter?: {
+                    /**
+                     * @description Filter by the active status of the driver. Inactive drivers will not be assigned to any routes.
+                     * @enum {string}
+                     */
+                    active?: "true" | "false";
+                };
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The drivers. */
+                        drivers: components["schemas"]["driverSchema"][];
+                        /** @description The next page token. */
+                        nextPageToken: null | string;
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    createDriver: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The request body for creating a driver. Even though `email` and `phone` are optional, you must provide exactly one of them */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description The driver's full name */
+                    name?: string | null;
+                    /** @description The name displayed for the driver in the UI */
+                    displayName?: string | null;
+                    /**
+                     * Format: email
+                     * @description Driver's email
+                     */
+                    email?: string | null;
+                    /** @description Driver's phone number */
+                    phone?: string | null;
+                    /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
+                    depots?: string[] | null;
+                    /** @description Overrides for the driver route behavior. */
+                    routeOverrides?: {
+                        /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        startAddress?: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        } | null;
+                        /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        endAddress?: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        } | null;
+                        /** @description The start time for the driver's work day. */
+                        startTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description The end time for the driver's work day. */
+                        endTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description The maximum number of stops that can be allocated to this driver. */
+                        maxStops?: number | null;
+                        /**
+                         * @description How fast this driver drives compared to the Team's average
+                         * @default average
+                         * @enum {string|null}
+                         */
+                        drivingSpeed?: "slower" | "average" | "faster" | null;
+                        /**
+                         * @description How fast this driver delivers compared to the Team's average
+                         * @default average
+                         * @enum {string|null}
+                         */
+                        deliverySpeed?: "slower" | "average" | "faster" | null;
+                        /**
+                         * @description The type of vehicle used by this driver
+                         * @enum {string|null}
+                         */
+                        vehicleType?: "bike" | "scooter" | "car" | "small_truck" | "truck" | "electric_cargo_bike" | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The created driver */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["driverSchema"];
+                };
+            };
+            /** @description Failed to validate the request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Failed to create driver. */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occured when creating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getDriver: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The driver id */
+                driverId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested driver */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["driverSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The provided driver id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "Driver not found" | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    deleteDriver: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The driver id */
+                driverId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Driver removed successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The provided driver id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "Driver not found" | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateDriver: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The driver id */
+                driverId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for updating a driver. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description The driver's full name */
+                    name?: string | null;
+                    /** @description The name displayed for the driver in the UI */
+                    displayName?: string | null;
+                    /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
+                    depots?: string[] | null;
+                    /** @description Overrides for the driver route behavior. */
+                    routeOverrides?: {
+                        /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        startAddress?: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        } | null;
+                        /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        endAddress?: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        } | null;
+                        /** @description The start time for the driver's work day. */
+                        startTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description The end time for the driver's work day. */
+                        endTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description The maximum number of stops that can be allocated to this driver. */
+                        maxStops?: number | null;
+                        /**
+                         * @description How fast this driver drives compared to the Team's average
+                         * @default average
+                         * @enum {string|null}
+                         */
+                        drivingSpeed?: "slower" | "average" | "faster" | null;
+                        /**
+                         * @description How fast this driver delivers compared to the Team's average
+                         * @default average
+                         * @enum {string|null}
+                         */
+                        deliverySpeed?: "slower" | "average" | "faster" | null;
+                        /**
+                         * @description The type of vehicle used by this driver
+                         * @enum {string|null}
+                         */
+                        vehicleType?: "bike" | "scooter" | "car" | "small_truck" | "truck" | "electric_cargo_bike" | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The updated driver */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["driverSchema"];
+                };
+            };
+            /** @description Failed to validate the request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Failed to update driver */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occured when updating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    importDrivers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description An array of driver descriptions to be created in batch. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description The driver's full name */
+                    name?: string | null;
+                    /** @description The name displayed for the driver in the UI */
+                    displayName?: string | null;
+                    /**
+                     * Format: email
+                     * @description Driver's email
+                     */
+                    email?: string | null;
+                    /** @description Driver's phone number */
+                    phone?: string | null;
+                    /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
+                    depots?: string[] | null;
+                    /** @description Overrides for the driver route behavior. */
+                    routeOverrides?: {
+                        /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        startAddress?: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        } | null;
+                        /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        endAddress?: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        } | null;
+                        /** @description The start time for the driver's work day. */
+                        startTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description The end time for the driver's work day. */
+                        endTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description The maximum number of stops that can be allocated to this driver. */
+                        maxStops?: number | null;
+                        /**
+                         * @description How fast this driver drives compared to the Team's average
+                         * @default average
+                         * @enum {string|null}
+                         */
+                        drivingSpeed?: "slower" | "average" | "faster" | null;
+                        /**
+                         * @description How fast this driver delivers compared to the Team's average
+                         * @default average
+                         * @enum {string|null}
+                         */
+                        deliverySpeed?: "slower" | "average" | "faster" | null;
+                        /**
+                         * @description The type of vehicle used by this driver
+                         * @enum {string|null}
+                         */
+                        vehicleType?: "bike" | "scooter" | "car" | "small_truck" | "truck" | "electric_cargo_bike" | null;
+                    } | null;
+                }[];
+            };
+        };
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The ids of the successfully imported drivers */
+                        success: string[];
+                        /** @description The failed drivers */
+                        failed: {
+                            error: {
+                                /** @description The error that occurred during import */
+                                message: string;
+                            };
+                            /** @description The request body for creating a driver. Even though `email` and `phone` are optional, you must provide at least one of */
+                            driver: {
+                                /** @description The driver's full name */
+                                name?: string | null;
+                                /** @description The name displayed for the driver in the UI */
+                                displayName?: string | null;
+                                /** @description Driver's email */
+                                email?: string | null;
+                                /** @description Driver's phone number */
+                                phone?: string | null;
+                                /** @description The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot. */
+                                depots?: string[] | null;
+                                routeOverrides?: {
+                                    /** @description Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                                    startAddress?: {
+                                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                                        addressName?: string | null;
+                                        /** @description The first line of the address. */
+                                        addressLineOne?: string | null;
+                                        /** @description The second line of the address. */
+                                        addressLineTwo?: string | null;
+                                        /** @description The city of the address. */
+                                        city?: string | null;
+                                        /** @description The state of the address. */
+                                        state?: string | null;
+                                        /** @description The zip code of the address. */
+                                        zip?: string | null;
+                                        /** @description The country of the address. */
+                                        country?: string | null;
+                                        /** @description The latitude of the address in decimal degrees. */
+                                        latitude?: number | null;
+                                        /** @description The longitude of the address in decimal degrees. */
+                                        longitude?: number | null;
+                                    } | null;
+                                    /** @description Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                                    endAddress?: {
+                                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                                        addressName?: string | null;
+                                        /** @description The first line of the address. */
+                                        addressLineOne?: string | null;
+                                        /** @description The second line of the address. */
+                                        addressLineTwo?: string | null;
+                                        /** @description The city of the address. */
+                                        city?: string | null;
+                                        /** @description The state of the address. */
+                                        state?: string | null;
+                                        /** @description The zip code of the address. */
+                                        zip?: string | null;
+                                        /** @description The country of the address. */
+                                        country?: string | null;
+                                        /** @description The latitude of the address in decimal degrees. */
+                                        latitude?: number | null;
+                                        /** @description The longitude of the address in decimal degrees. */
+                                        longitude?: number | null;
+                                    } | null;
+                                    /** @description The start time for the driver's work day. */
+                                    startTime?: {
+                                        /** @description Hour of the day */
+                                        hour: number;
+                                        /** @description Minute of the hour */
+                                        minute: number;
+                                    } | null;
+                                    /** @description The end time for the driver's work day. */
+                                    endTime?: {
+                                        /** @description Hour of the day */
+                                        hour: number;
+                                        /** @description Minute of the hour */
+                                        minute: number;
+                                    } | null;
+                                    /** @description The maximum number of stops that can be allocated to this driver. */
+                                    maxStops?: number | null;
+                                    /** @description How fast this driver drives compared to the Team's average */
+                                    drivingSpeed?: ("slower" | "average" | "faster") | null;
+                                    /** @description How fast this driver delivers compared to the Team's average */
+                                    deliverySpeed?: ("slower" | "average" | "faster") | null;
+                                    /** @description The type of vehicle used by this driver */
+                                    vehicleType?: ("bike" | "scooter" | "car" | "small_truck" | "truck" | "electric_cargo_bike") | null;
+                                } | null;
+                            };
+                        }[];
+                    };
+                };
+            };
+            /** @description Failed to validate the request */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Failed to import drivers. */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occured when importing drivers, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    listDepots: {
+        parameters: {
+            query?: {
+                /** @description The page token to continue from. */
+                pageToken?: string;
+                /** @description The maximum number of depots to return. */
+                maxPageSize?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The depots. */
+                        depots: components["schemas"]["depotSchema"][];
+                        /** @description The next page token. */
+                        nextPageToken: null | string;
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getDepot: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The depot id */
+                depotId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested depot */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["depotSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The provided depot id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Depot not found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getRoute: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The route id */
+                routeId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested route */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["routeSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Route is no longer accessible due to data access restrictions. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Route is no longer accessible due to data access restrictions.";
+                        /** @enum {string} */
+                        code: "route_inaccessible";
+                    };
+                };
+            };
+            /** @description The provided route id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Route not found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    cancelOperation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the operation to cancel. */
+                operationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The operation was canceled successfully */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["operationSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "The operation was not found.";
+                        /** @enum {string} */
+                        code: "operation_not_found";
+                    };
+                };
+            };
+            /** @description The default error model */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "The operation cannot be canceled because it is already done.";
+                        /** @enum {string} */
+                        code: "operation_already_done";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getOperation: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The ID of the operation to cancel. */
+                operationId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested operation */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["operationSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "The operation was not found.";
+                        /** @enum {string} */
+                        code: "operation_not_found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    listOperations: {
+        parameters: {
+            query?: {
+                /** @description The page token to continue from. */
+                pageToken?: string;
+                /** @description The maximum number of operations to return per page. */
+                maxPageSize?: number;
+                /** @description The filter to apply to the list of operations. */
+                filter?: {
+                    /** @description Filter by whether the operation is done. */
+                    done?: "true" | "false";
+                    /**
+                     * @description The type of the operation. Use this to filter which operations to get when listing operations. If not specified, all operations are returned. If specified, only operations of the specified type are returned.
+                     * @enum {string}
+                     */
+                    type?: "plan_optimization";
+                };
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The operations. */
+                        operations: components["schemas"]["operationSchema"][];
+                        /** @description The next page token. */
+                        nextPageToken: null | string;
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    getUnassignedStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unassigned stop id */
+                unassignedStopId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The requested unassigned stop */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["unassignedStopSchema"];
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The provided unassigned stop id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        message: "Unassigned stop not found";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    deleteUnassignedStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unassigned stop id */
+                unassignedStopId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Unassigned Stop deleted successfully */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    updateUnassignedStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The unassigned stop id */
+                unassignedStopId: string;
+            };
+            cookie?: never;
+        };
+        /** @description The request body for updating an unassigned stop. All the values present in the request will update the unassigned stop value. If you wish to update only certain fields, only set those and do not set the others. Any fields not set will not be updated. */
+        requestBody?: {
+            content: {
+                "application/json": {
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        externalId?: string | null;
+                        email?: string | null;
+                        phone?: string | null;
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        products?: string[];
+                        sellerOrderId?: string | null;
+                        sellerName?: string | null;
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        amount?: number | null;
+                        /** @enum {string|null} */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        enabled?: boolean | null;
+                    } | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /** @enum {string|null} */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    notes?: string | null;
+                    barcodes?: string[];
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                    timing?: {
+                        /** @description Time of day in hours and minutes. Use a 24 hour clock. */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day in hours and minutes. Use a 24 hour clock. */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                    depot?: string | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The updated unassigned stop */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["unassignedStopSchema"];
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The request contains fields that are not supported by your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    listUnassignedStops: {
+        parameters: {
+            query?: {
+                /** @description The page token to continue from. */
+                pageToken?: string;
+                /** @description The maximum number of unassigned stops to return per page. */
+                maxPageSize?: number;
+                /** @description The filter to apply to the list of unassigned stops. */
+                filter?: {
+                    /** @description Filter by the `recipient.externalId` field, exact match */
+                    externalId?: string;
+                };
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The unassignedStops. */
+                        unassignedStops: components["schemas"]["unassignedStopSchema"][];
+                        /** @description The next page token. */
+                        nextPageToken: null | string;
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    createUnassignedStop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description The request body for creating an unassigned stop. Address is a required field, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set (and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be. The depotId field is not required, but will default to the main depot of the team if not provided, be sure to provide it if you want to use a different depot. */
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                    address: {
+                        /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                        addressName?: string | null;
+                        /** @description The first line of the address. */
+                        addressLineOne?: string | null;
+                        /** @description The second line of the address. */
+                        addressLineTwo?: string | null;
+                        /** @description The city of the address. */
+                        city?: string | null;
+                        /** @description The state of the address. */
+                        state?: string | null;
+                        /** @description The zip code of the address. */
+                        zip?: string | null;
+                        /** @description The country of the address. */
+                        country?: string | null;
+                        /** @description The latitude of the address in decimal degrees. */
+                        latitude?: number | null;
+                        /** @description The longitude of the address in decimal degrees. */
+                        longitude?: number | null;
+                    };
+                    /** @description The Depot ID that this unassigned stop belongs to, in the format `depot/<id>`. If not provided, or null, it will default to the team's main depot. */
+                    depot?: string | null;
+                    /** @description Timing information for this stop */
+                    timing?: {
+                        /** @description Time of day of the earliest time this stop should happen */
+                        earliestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Time of day of the latest time this stop should happen */
+                        latestAttemptTime?: {
+                            /** @description Hour of the day */
+                            hour: number;
+                            /** @description Minute of the hour */
+                            minute: number;
+                        } | null;
+                        /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
+                        estimatedAttemptDuration?: number | null;
+                    } | null;
+                    /** @description Recipient information for this stop */
+                    recipient?: {
+                        /** @description External ID of the recipient, as defined by the API user */
+                        externalId?: string | null;
+                        /** @description Email of the recipient */
+                        email?: string | null;
+                        /** @description Phone number of the recipient */
+                        phone?: string | null;
+                        /** @description Name of the recipient */
+                        name?: string | null;
+                    } | null;
+                    /** @description Order information for this stop */
+                    orderInfo?: {
+                        /** @description Products in this stop */
+                        products?: string[];
+                        /** @description Seller order ID */
+                        sellerOrderId?: string | null;
+                        /** @description Seller name */
+                        sellerName?: string | null;
+                        /** @description Seller website */
+                        sellerWebsite?: string | null;
+                    } | null;
+                    /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                    paymentOnDelivery?: {
+                        /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
+                        amount?: number | null;
+                        /**
+                         * @description Currency of the payment. Defaults to the team's currency.
+                         * @enum {string|null}
+                         */
+                        currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                    } | null;
+                    /** @description Proof of attempt requirement settings for this stop */
+                    proofOfAttemptRequirements?: {
+                        /** @description Whether proof of attempt is required for this stop */
+                        enabled?: boolean | null;
+                    } | null;
+                    /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. */
+                    allowedDrivers?: string[] | null;
+                    /**
+                     * @description Activity type
+                     * @default delivery
+                     * @enum {string|null}
+                     */
+                    activity?: "delivery" | "pickup" | null;
+                    /**
+                     * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
+                     * @enum {string|null}
+                     */
+                    optimizationOrder?: "first" | "last" | "default" | null;
+                    /** @description Number of packages in the stop */
+                    packageCount?: number | null;
+                    /** @description Weight information for this stop. */
+                    weight?: {
+                        /** @description The weight amount for this stop. */
+                        amount: number;
+                        /**
+                         * @description The weight unit in which the amount is specified.
+                         * @enum {string}
+                         */
+                        unit: "kilogram" | "pound" | "metric-ton";
+                    } | null;
+                    /** @description Notes for the stop */
+                    notes?: string | null;
+                    /** @description Client ID of the retailer in Spoke Connect */
+                    circuitClientId?: string | null;
+                    /** @description List of barcode IDs associated with this stop */
+                    barcodes?: string[];
+                    /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
+                    customProperties?: {
+                        [key: string]: string | null;
+                    } | null;
+                };
+            };
+        };
+        responses: {
+            /** @description The created unassignedStop */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["unassignedStopSchema"];
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The request contains fields that are not supported by your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description The provided driver id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "Driver not found" | string;
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occurred when creating the unassigned stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    importUnassignedStops: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** @description An array of unassigned stops to import in batch. Supports a maximum of 100 unassigned stops per request. Note that the `depot` is shared across all unassigned stops in the request, and thus should not be provided for individual unassigned stops. That is because the `depot` location is used to bias the geocoding results of the stops. */
+                    unassignedStops: {
+                        /** @description Address of the stop, at least one of the fields is required. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes. */
+                        address: {
+                            /** @description The name of the address. This will not be used for geocoding, and is only for the final address display purposes. */
+                            addressName?: string | null;
+                            /** @description The first line of the address. */
+                            addressLineOne?: string | null;
+                            /** @description The second line of the address. */
+                            addressLineTwo?: string | null;
+                            /** @description The city of the address. */
+                            city?: string | null;
+                            /** @description The state of the address. */
+                            state?: string | null;
+                            /** @description The zip code of the address. */
+                            zip?: string | null;
+                            /** @description The country of the address. */
+                            country?: string | null;
+                            /** @description The latitude of the address in decimal degrees. */
+                            latitude?: number | null;
+                            /** @description The longitude of the address in decimal degrees. */
+                            longitude?: number | null;
+                        };
+                        /** @description Timing information for this stop */
+                        timing?: {
+                            /** @description Time of day of the earliest time this stop should happen */
+                            earliestAttemptTime?: {
+                                /** @description Hour of the day */
+                                hour: number;
+                                /** @description Minute of the hour */
+                                minute: number;
+                            } | null;
+                            /** @description Time of day of the latest time this stop should happen */
+                            latestAttemptTime?: {
+                                /** @description Hour of the day */
+                                hour: number;
+                                /** @description Minute of the hour */
+                                minute: number;
+                            } | null;
+                            /** @description Duration in seconds of the activity in this stop, only set if you want to override the default. This can be set up to 8 hours. */
+                            estimatedAttemptDuration?: number | null;
+                        } | null;
+                        /** @description Recipient information for this stop */
+                        recipient?: {
+                            /** @description External ID of the recipient, as defined by the API user */
+                            externalId?: string | null;
+                            /** @description Email of the recipient */
+                            email?: string | null;
+                            /** @description Phone number of the recipient */
+                            phone?: string | null;
+                            /** @description Name of the recipient */
+                            name?: string | null;
+                        } | null;
+                        /** @description Order information for this stop */
+                        orderInfo?: {
+                            /** @description Products in this stop */
+                            products?: string[];
+                            /** @description Seller order ID */
+                            sellerOrderId?: string | null;
+                            /** @description Seller name */
+                            sellerName?: string | null;
+                            /** @description Seller website */
+                            sellerWebsite?: string | null;
+                        } | null;
+                        /** @description Payment on delivery (also known as "Cash on Delivery") data for this stop */
+                        paymentOnDelivery?: {
+                            /** @description Amount *in minor units* (e.g. cents) to be collected upon delivery */
+                            amount?: number | null;
+                            /**
+                             * @description Currency of the payment. Defaults to the team's currency.
+                             * @enum {string|null}
+                             */
+                            currency?: "AED" | "ARS" | "AUD" | "BRL" | "CAD" | "CHF" | "CLP" | "CNY" | "COP" | "DKK" | "EGP" | "EUR" | "GBP" | "HKD" | "ILS" | "INR" | "JPY" | "KRW" | "MYR" | "MXN" | "NOK" | "NZD" | "PEN" | "RON" | "RUB" | "SAR" | "SEK" | "SGD" | "TRY" | "USD" | "UYU" | "ZAR" | null;
+                        } | null;
+                        /** @description Proof of attempt requirement settings for this stop */
+                        proofOfAttemptRequirements?: {
+                            /** @description Whether proof of attempt is required for this stop */
+                            enabled?: boolean | null;
+                        } | null;
+                        /** @description Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. */
+                        allowedDrivers?: string[] | null;
+                        /**
+                         * @description Activity type
+                         * @default delivery
+                         * @enum {string|null}
+                         */
+                        activity?: "delivery" | "pickup" | null;
+                        /**
+                         * @description The preferred order of this stop in the optimized route. If not provided or `"default"`, the stop will be placed in the optimal order, decided by the optimization algorithm. Otherwise it will be placed either `"first"` or `"last"`.
+                         * @enum {string|null}
+                         */
+                        optimizationOrder?: "first" | "last" | "default" | null;
+                        /** @description Number of packages in the stop */
+                        packageCount?: number | null;
+                        /** @description Weight information for this stop. */
+                        weight?: {
+                            /** @description The weight amount for this stop. */
+                            amount: number;
+                            /**
+                             * @description The weight unit in which the amount is specified.
+                             * @enum {string}
+                             */
+                            unit: "kilogram" | "pound" | "metric-ton";
+                        } | null;
+                        /** @description Notes for the stop */
+                        notes?: string | null;
+                        /** @description Client ID of the retailer in Spoke Connect */
+                        circuitClientId?: string | null;
+                        /** @description List of barcode IDs associated with this stop */
+                        barcodes?: string[];
+                        /** @description Key-value pairs of custom stop properties for this stop. The keys must be unique and match a custom stop property defined in your team. */
+                        customProperties?: {
+                            [key: string]: string | null;
+                        } | null;
+                    }[];
+                    /** @description The Depot ID the unassigned stops in the batch belong to, in the format `depot/<id>`. This is used to bias the geocoding results of the unassigned stops, so every unassigned stop in the batch should belong to the same depot. If not provided, or null, it will default to the team's main depot. */
+                    depot?: string | null;
+                };
+            };
+        };
+        responses: {
+            /** @description Default Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The ids of the successfully imported unassigned stops */
+                        success: string[];
+                        /** @description The failed unassigned stops */
+                        failed: {
+                            error: {
+                                /** @description The error that occurred during import */
+                                message: string;
+                            };
+                            /** @description The unassigned stop that failed to import */
+                            unassignedStop: {
+                                /** @description The address of the unassigned stop that failed to import */
+                                address: {
+                                    addressName: string | null;
+                                    addressLineOne: string | null;
+                                    addressLineTwo: string | null;
+                                    city: string | null;
+                                    state: string | null;
+                                    zip: string | null;
+                                    country: string | null;
+                                    latitude: number | null;
+                                    longitude: number | null;
+                                };
+                                /** @description The recipient of the unassigned stop that failed to import */
+                                recipient: {
+                                    externalId: string | null;
+                                    email: string | null;
+                                    phone: string | null;
+                                    name: string | null;
+                                } | null;
+                            };
+                        }[];
+                    };
+                };
+            };
+            /** @description The request has errors. Either syntatic or semantic */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The request contains fields that are not supported by your team subscription/settings. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    } | {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "vehicle_capacity_disabled";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/settings/team-profile";
+                    };
+                };
+            };
+            /** @description A depot or a driver was not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                    };
+                };
+            };
+            /** @description Failed to create stop */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "An error occurred when creating the unassigned stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid." | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
+    };
+    listCustomStopProperties: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
             /** @description The set of custom stop properties. */
-            customStopProperties: {
-              /** @description The custom stop property id */
-              id: string;
-              /** @description The name of the custom stop property */
-              name: string;
-              /** @description Whether this custom stop property is visible to drivers. */
-              visibleToDrivers: boolean;
-              /** @description Whether this property is visible to recipients. */
-              visibleToRecipients: boolean;
-            }[];
-          };
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The set of custom stop properties. */
+                        customStopProperties: {
+                            /** @description The custom stop property id */
+                            id: string;
+                            /** @description The name of the custom stop property */
+                            name: string;
+                            /** @description Whether this custom stop property is visible to drivers. */
+                            visibleToDrivers: boolean;
+                            /** @description Whether this property is visible to recipients. */
+                            visibleToRecipients: boolean;
+                        }[];
+                    };
+                };
+            };
+            /** @description Query parameters are invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Feature not included in your team subscription */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
         };
-      };
-      /** @description Query parameters are invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Feature not included in your team subscription */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
     };
-  };
-  getCustomStopProperty: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        /** @description The custom stop property id */
-        customStopPropertyId: string;
-      };
-      cookie?: never;
+    getCustomStopProperty: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /** @description The custom stop property id */
+                customStopPropertyId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The definition of a custom stop property. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The custom stop property id */
+                        id: string;
+                        /** @description The name of the custom stop property */
+                        name: string;
+                        /** @description Whether this custom stop property is visible to drivers. */
+                        visibleToDrivers: boolean;
+                        /** @description Whether this property is visible to recipients. */
+                        visibleToRecipients: boolean;
+                    };
+                };
+            };
+            /** @description ID format is invalid */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description Feature not included in your team subscription */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @enum {string} */
+                        code: "feature_not_in_subscription";
+                        /** @enum {string} */
+                        url: "https://dispatch.spoke.com/paywall";
+                    };
+                };
+            };
+            /** @description The provided custom stop property id does not exist */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        message: "Custom stop property not found" | string;
+                    };
+                };
+            };
+            /** @description An internal server error occurred */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+            /** @description The default error model */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @description The error message. */
+                        message: string;
+                        /** @description The error code. */
+                        code?: string;
+                        /** @description The parameter that caused the error. */
+                        param?: string;
+                        /** @description The URL with more information about the error. */
+                        url?: string;
+                    };
+                };
+            };
+        };
     };
-    requestBody?: never;
-    responses: {
-      /** @description The definition of a custom stop property. */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The custom stop property id */
-            id: string;
-            /** @description The name of the custom stop property */
-            name: string;
-            /** @description Whether this custom stop property is visible to drivers. */
-            visibleToDrivers: boolean;
-            /** @description Whether this property is visible to recipients. */
-            visibleToRecipients: boolean;
-          };
-        };
-      };
-      /** @description ID format is invalid */
-      400: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description Feature not included in your team subscription */
-      403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @enum {string} */
-            code: "feature_not_in_subscription";
-            /** @enum {string} */
-            url: "https://dispatch.spoke.com/paywall";
-          };
-        };
-      };
-      /** @description The provided custom stop property id does not exist */
-      404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            message: "Custom stop property not found" | string;
-          };
-        };
-      };
-      /** @description An internal server error occurred */
-      500: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-      /** @description The default error model */
-      default: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": {
-            /** @description The error message. */
-            message: string;
-            /** @description The error code. */
-            code?: string;
-            /** @description The parameter that caused the error. */
-            param?: string;
-            /** @description The URL with more information about the error. */
-            url?: string;
-          };
-        };
-      };
-    };
-  };
 }
