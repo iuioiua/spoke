@@ -110,6 +110,15 @@ export function equal(a: unknown, b: unknown): boolean {
     if (a instanceof Date && b instanceof Date) {
       return Object.is(a.getTime(), b.getTime());
     }
+    if (a instanceof Request && b instanceof Request) {
+      return a.url === b.url &&
+        a.method === b.method &&
+        a.redirect === b.redirect &&
+        equal(
+          Object.fromEntries(a.headers),
+          Object.fromEntries(b.headers),
+        );
+    }
     if (a && typeof a === "object" && b && typeof b === "object") {
       if (!prototypesEqual(a, b)) {
         return false;
@@ -215,7 +224,12 @@ export function equal(a: unknown, b: unknown): boolean {
   })(a, b);
 }
 
-// TODO: why does this evaluate to `false`?
+// Fixed: Request objects now compare properly
+// Previously evaluated to `false` because Request objects have internal
+// Symbol properties with different function instances (e.g., urlList contains
+// different anonymous functions per instance), causing deep equality to fail.
+// Solution: Added special handling for Request objects (similar to Date)
+// that compares meaningful properties (url, method, redirect, headers).
 console.log(equal(
   new Request("https://example.com"),
   new Request("https://example.com"),
