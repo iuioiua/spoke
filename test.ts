@@ -26,6 +26,7 @@ Deno.test("createSpokeClient()", async () => {
   assertInstanceOf(request, Request);
   assertEquals(request.url, "https://api.getcircuit.com/public/v0.2b/plans");
   assertEquals(request.method, "GET");
+  assertEquals(request.redirect, "follow");
   assertEquals(request.headers.get("authorization"), `Bearer ${apiKey}`);
   assertEquals(call.args[1], undefined);
 });

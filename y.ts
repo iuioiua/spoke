@@ -1,5 +1,10 @@
 // Copyright 2018-2026 the Deno authors. MIT license.
 // This module is browser compatible.
+//
+// Investigation file: This file demonstrates the Request comparison issue
+// and contains a fixed version of the equal() function that properly
+// handles Request objects. This is not production code - see mod.ts for
+// the actual library exports.
 
 type KeyedCollection = Set<unknown> | Map<unknown, unknown>;
 function isKeyedCollection(x: unknown): x is KeyedCollection {
