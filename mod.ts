@@ -1,7 +1,4 @@
-import createClient, {
-  type ClientOptions,
-  type Middleware,
-} from "openapi-fetch";
+import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./types.d.ts";
 
 export * from "./types.d.ts";
@@ -31,10 +28,8 @@ const BASE_PATH = "/public/v0.2b";
  */
 export function createSpokeClient(
   apiKey: string,
-  options?: ClientOptions,
 ): ReturnType<typeof createClient<paths>> {
   const spokeClient = createClient<paths>({
-    ...options,
     baseUrl: BASE_ORIGIN + BASE_PATH,
   });
   spokeClient.use({
