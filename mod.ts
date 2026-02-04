@@ -6,6 +6,9 @@ import type { paths } from "./types.d.ts";
 
 export * from "./types.d.ts";
 
+const BASE_ORIGIN = "https://api.getcircuit.com";
+const BASE_PATH = "/public/v0.2b";
+
 /**
  * Create a Spoke REST API client.
  *
@@ -32,7 +35,7 @@ export function createSpokeClient(
 ): ReturnType<typeof createClient<paths>> {
   const spokeClient = createClient<paths>({
     ...options,
-    baseUrl: "https://api.getcircuit.com/public/v0.2b",
+    baseUrl: BASE_ORIGIN + BASE_PATH,
   });
   spokeClient.use({
     onRequest({ request }) {
@@ -55,7 +58,7 @@ function wait(ms: number): Promise<void> {
 }
 
 function pathMatches(url: string, pathname: string): boolean {
-  return new URLPattern({ pathname }).test(url);
+  return new URLPattern({ pathname: BASE_PATH + pathname }).test(url);
 }
 
 function isDriverCreationRequest(request: Request): boolean {
@@ -64,12 +67,8 @@ function isDriverCreationRequest(request: Request): boolean {
 }
 
 function isBatchImportStopsRequest(request: Request): boolean {
-  return pathMatches(request.url, "/plans/:planId/stops\\:import") &&
-    request.method === "POST";
-}
-
-function isBatchImportUnassignedStopsRequest(request: Request): boolean {
-  return pathMatches(request.url, "/unassignedStops\\:import") &&
+  return (pathMatches(request.url, "/plans/:planId/stops\\:import") ||
+    pathMatches(request.url, "/unassignedStops\\:import")) &&
     request.method === "POST";
 }
 
@@ -79,12 +78,8 @@ function isBatchImportDriversRequest(request: Request): boolean {
 }
 
 function isPlanOptimizationRequest(request: Request): boolean {
-  return pathMatches(request.url, "/plans/:planId\\:optimize") &&
-    request.method === "POST";
-}
-
-function isPlanReoptimizationRequest(request: Request): boolean {
-  return pathMatches(request.url, "/plans/:planId\\:reoptimize") &&
+  return (pathMatches(request.url, "/plans/:planId\\:optimize") ||
+    pathMatches(request.url, "/plans/:planId\\:reoptimize")) &&
     request.method === "POST";
 }
 
@@ -104,76 +99,51 @@ export interface RateLimitMiddlewareOptions {
 export function createRateLimitMiddleware(
   options: RateLimitMiddlewareOptions = {},
 ): Middleware {
-  const {
-    driverCreationDelay = DEFAULT_DRIVER_CREATION_DELAY,
-    batchImportStopsDelay = DEFAULT_BATCH_IMPORT_STOPS_DELAY,
-    batchImportDriversDelay = DEFAULT_BATCH_IMPORT_DRIVERS_DELAY,
-    planOptimizationDelay = DEFAULT_PLAN_OPTIMIZATION_DELAY,
-    writeRequestDelay = DEFAULT_WRITE_REQUEST_DELAY,
-    readRequestDelay = DEFAULT_READ_REQUEST_DELAY,
-  } = options;
-  let driverCreationQueue = Promise.resolve();
-  let batchImportStopsQueue = Promise.resolve();
-  let batchImportDriversQueue = Promise.resolve();
-  let planOptimizationQueue = Promise.resolve();
-  let writeRequestQueue = Promise.resolve();
-  let readRequestQueue = Promise.resolve();
-
+  const rules = [
+    {
+      qualifier: isDriverCreationRequest,
+      queue: Promise.resolve(),
+      delay: options.driverCreationDelay ?? DEFAULT_DRIVER_CREATION_DELAY,
+    },
+    {
+      qualifier: isBatchImportStopsRequest,
+      queue: Promise.resolve(),
+      delay: options.batchImportStopsDelay ?? DEFAULT_BATCH_IMPORT_STOPS_DELAY,
+    },
+    {
+      qualifier: isBatchImportDriversRequest,
+      queue: Promise.resolve(),
+      delay: options.batchImportDriversDelay ??
+        DEFAULT_BATCH_IMPORT_DRIVERS_DELAY,
+    },
+    {
+      qualifier: isPlanOptimizationRequest,
+      queue: Promise.resolve(),
+      delay: options.planOptimizationDelay ?? DEFAULT_PLAN_OPTIMIZATION_DELAY,
+    },
+    {
+      qualifier: isWriteRequest,
+      queue: Promise.resolve(),
+      delay: options.writeRequestDelay ?? DEFAULT_WRITE_REQUEST_DELAY,
+    },
+    {
+      qualifier: (request: Request) => request.method === "GET",
+      queue: Promise.resolve(),
+      delay: options.readRequestDelay ?? DEFAULT_READ_REQUEST_DELAY,
+    },
+  ] satisfies {
+    qualifier: (request: Request) => boolean;
+    queue: Promise<void>;
+    delay: number;
+  }[];
   return {
     async onRequest({ request }) {
-      if (isDriverCreationRequest(request)) {
-        driverCreationQueue = driverCreationQueue.then(() =>
-          wait(driverCreationDelay)
-        );
-        await driverCreationQueue;
-        return request;
-      }
-
-      if (
-        isBatchImportStopsRequest(request) ||
-        isBatchImportUnassignedStopsRequest(request)
-      ) {
-        batchImportStopsQueue = batchImportStopsQueue.then(() =>
-          wait(batchImportStopsDelay)
-        );
-        await batchImportStopsQueue;
-        return request;
-      }
-
-      if (isBatchImportDriversRequest(request)) {
-        batchImportDriversQueue = batchImportDriversQueue.then(() =>
-          wait(batchImportDriversDelay)
-        );
-        await batchImportDriversQueue;
-        return request;
-      }
-
-      if (
-        isPlanOptimizationRequest(request) ||
-        isPlanReoptimizationRequest(request)
-      ) {
-        planOptimizationQueue = planOptimizationQueue.then(() =>
-          wait(planOptimizationDelay)
-        );
-        await planOptimizationQueue;
-        return request;
-      }
-
-      if (isWriteRequest(request)) {
-        writeRequestQueue = writeRequestQueue.then(() =>
-          wait(writeRequestDelay)
-        );
-        await writeRequestQueue;
-        return request;
-      }
-
-      if (request.method === "GET") {
-        readRequestQueue = readRequestQueue.then(() => wait(readRequestDelay));
-        await readRequestQueue;
-        return request;
-      }
-
+      const rule = rules.find((r) => r.qualifier(request));
       // Assume all other requests are not rate-limited
+      if (!rule) return request;
+
+      rule.queue = rule.queue.then(() => wait(rule.delay));
+      await rule.queue;
       return request;
     },
   };
