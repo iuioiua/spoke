@@ -97,39 +97,39 @@ export interface RateLimitMiddlewareOptions {
 }
 
 export function createRateLimitMiddleware(
-  options: RateLimitMiddlewareOptions = {},
+  options?: RateLimitMiddlewareOptions,
 ): Middleware {
   const rules = [
     {
       qualifier: isDriverCreationRequest,
       queue: Promise.resolve(),
-      delay: options.driverCreationDelay ?? DEFAULT_DRIVER_CREATION_DELAY,
+      delay: options?.driverCreationDelay ?? DEFAULT_DRIVER_CREATION_DELAY,
     },
     {
       qualifier: isBatchImportStopsRequest,
       queue: Promise.resolve(),
-      delay: options.batchImportStopsDelay ?? DEFAULT_BATCH_IMPORT_STOPS_DELAY,
+      delay: options?.batchImportStopsDelay ?? DEFAULT_BATCH_IMPORT_STOPS_DELAY,
     },
     {
       qualifier: isBatchImportDriversRequest,
       queue: Promise.resolve(),
-      delay: options.batchImportDriversDelay ??
+      delay: options?.batchImportDriversDelay ??
         DEFAULT_BATCH_IMPORT_DRIVERS_DELAY,
     },
     {
       qualifier: isPlanOptimizationRequest,
       queue: Promise.resolve(),
-      delay: options.planOptimizationDelay ?? DEFAULT_PLAN_OPTIMIZATION_DELAY,
+      delay: options?.planOptimizationDelay ?? DEFAULT_PLAN_OPTIMIZATION_DELAY,
     },
     {
       qualifier: isWriteRequest,
       queue: Promise.resolve(),
-      delay: options.writeRequestDelay ?? DEFAULT_WRITE_REQUEST_DELAY,
+      delay: options?.writeRequestDelay ?? DEFAULT_WRITE_REQUEST_DELAY,
     },
     {
       qualifier: (request: Request) => request.method === "GET",
       queue: Promise.resolve(),
-      delay: options.readRequestDelay ?? DEFAULT_READ_REQUEST_DELAY,
+      delay: options?.readRequestDelay ?? DEFAULT_READ_REQUEST_DELAY,
     },
   ] satisfies {
     qualifier: (request: Request) => boolean;
