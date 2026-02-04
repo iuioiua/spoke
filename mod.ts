@@ -127,7 +127,7 @@ export function createRateLimitMiddleware(
       delay: options?.writeRequestDelay ?? DEFAULT_WRITE_REQUEST_DELAY,
     },
     {
-      qualifier: (request: Request) => request.method === "GET",
+      qualifier: (request) => request.method === "GET",
       queue: Promise.resolve(),
       delay: options?.readRequestDelay ?? DEFAULT_READ_REQUEST_DELAY,
     },
