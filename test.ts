@@ -371,5 +371,5 @@ Deno.test("createRateLimitMiddleware() - priority order (driver creation over wr
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
   // Should use driver creation delay (TEST_DELAY_MS), not write request delay (100ms)
   assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
-  assertLess(elapsed, 75);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
