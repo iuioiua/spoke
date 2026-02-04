@@ -2,6 +2,13 @@ import { assertEquals, assertGreater, assertLess } from "@std/assert";
 import { stub } from "@std/testing/mock";
 import { createRateLimitMiddleware, createSpokeClient } from "./mod.ts";
 
+// Test constants
+const TEST_DELAY_MS = 50;
+const DELAY_TOLERANCE_LOWER_MS = 45;
+const DELAY_TOLERANCE_UPPER_MS = 100;
+const DEFAULT_DELAY_TOLERANCE_LOWER_MS = 950;
+const DEFAULT_DELAY_TOLERANCE_UPPER_MS = 1100;
+
 Deno.test("createSpokeClient()", async () => {
   const apiKey = "test-api-key";
   const baseUrl = "https://api.getcircuit.com/public/v0.2b";
@@ -42,7 +49,7 @@ Deno.test("createRateLimitMiddleware() - driver creation rate limiting", async (
   });
 
   const middleware = createRateLimitMiddleware({
-    driverCreationDelay: 50,
+    driverCreationDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -51,8 +58,8 @@ Deno.test("createRateLimitMiddleware() - driver creation rate limiting", async (
   await client.POST("/drivers", { body: {} });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - batch import stops rate limiting", async () => {
@@ -70,7 +77,7 @@ Deno.test("createRateLimitMiddleware() - batch import stops rate limiting", asyn
   });
 
   const middleware = createRateLimitMiddleware({
-    batchImportStopsDelay: 50,
+    batchImportStopsDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -88,8 +95,8 @@ Deno.test("createRateLimitMiddleware() - batch import stops rate limiting", asyn
   });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - unassigned stops import rate limiting", async () => {
@@ -107,7 +114,7 @@ Deno.test("createRateLimitMiddleware() - unassigned stops import rate limiting",
   });
 
   const middleware = createRateLimitMiddleware({
-    batchImportStopsDelay: 50,
+    batchImportStopsDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -118,8 +125,8 @@ Deno.test("createRateLimitMiddleware() - unassigned stops import rate limiting",
   await client.POST("/unassignedStops:import", { body: {} });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - batch import drivers rate limiting", async () => {
@@ -137,7 +144,7 @@ Deno.test("createRateLimitMiddleware() - batch import drivers rate limiting", as
   });
 
   const middleware = createRateLimitMiddleware({
-    batchImportDriversDelay: 50,
+    batchImportDriversDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -148,8 +155,8 @@ Deno.test("createRateLimitMiddleware() - batch import drivers rate limiting", as
   await client.POST("/drivers:import", { body: [] });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - plan optimization rate limiting", async () => {
@@ -167,7 +174,7 @@ Deno.test("createRateLimitMiddleware() - plan optimization rate limiting", async
   });
 
   const middleware = createRateLimitMiddleware({
-    planOptimizationDelay: 50,
+    planOptimizationDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -180,8 +187,8 @@ Deno.test("createRateLimitMiddleware() - plan optimization rate limiting", async
   });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - plan reoptimization rate limiting", async () => {
@@ -199,7 +206,7 @@ Deno.test("createRateLimitMiddleware() - plan reoptimization rate limiting", asy
   });
 
   const middleware = createRateLimitMiddleware({
-    planOptimizationDelay: 50,
+    planOptimizationDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -212,8 +219,8 @@ Deno.test("createRateLimitMiddleware() - plan reoptimization rate limiting", asy
   });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - write request rate limiting (PATCH)", async () => {
@@ -231,7 +238,7 @@ Deno.test("createRateLimitMiddleware() - write request rate limiting (PATCH)", a
   });
 
   const middleware = createRateLimitMiddleware({
-    writeRequestDelay: 50,
+    writeRequestDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -246,8 +253,8 @@ Deno.test("createRateLimitMiddleware() - write request rate limiting (PATCH)", a
   });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - write request rate limiting (DELETE)", async () => {
@@ -265,7 +272,7 @@ Deno.test("createRateLimitMiddleware() - write request rate limiting (DELETE)", 
   });
 
   const middleware = createRateLimitMiddleware({
-    writeRequestDelay: 50,
+    writeRequestDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -278,8 +285,8 @@ Deno.test("createRateLimitMiddleware() - write request rate limiting (DELETE)", 
   });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - read request rate limiting (GET)", async () => {
@@ -297,7 +304,7 @@ Deno.test("createRateLimitMiddleware() - read request rate limiting (GET)", asyn
   });
 
   const middleware = createRateLimitMiddleware({
-    readRequestDelay: 50,
+    readRequestDelay: TEST_DELAY_MS,
   });
   const client = createSpokeClient(apiKey);
   client.use(middleware);
@@ -306,8 +313,8 @@ Deno.test("createRateLimitMiddleware() - read request rate limiting (GET)", asyn
   await client.GET("/plans");
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  assertGreater(elapsed, 45);
-  assertLess(elapsed, 100);
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - uses default delays when no options provided", async () => {
@@ -333,8 +340,8 @@ Deno.test("createRateLimitMiddleware() - uses default delays when no options pro
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
   // Default driver creation delay is 1000ms
-  assertGreater(elapsed, 950);
-  assertLess(elapsed, 1100);
+  assertGreater(elapsed, DEFAULT_DELAY_TOLERANCE_LOWER_MS);
+  assertLess(elapsed, DEFAULT_DELAY_TOLERANCE_UPPER_MS);
 });
 
 Deno.test("createRateLimitMiddleware() - priority order (driver creation over write request)", async () => {
@@ -352,7 +359,7 @@ Deno.test("createRateLimitMiddleware() - priority order (driver creation over wr
   });
 
   const middleware = createRateLimitMiddleware({
-    driverCreationDelay: 50,
+    driverCreationDelay: TEST_DELAY_MS,
     writeRequestDelay: 100,
   });
   const client = createSpokeClient(apiKey);
@@ -362,7 +369,7 @@ Deno.test("createRateLimitMiddleware() - priority order (driver creation over wr
   await client.POST("/drivers", { body: {} });
 
   const elapsed = requestTimestamps[1]! - requestTimestamps[0]!;
-  // Should use driver creation delay (50ms), not write request delay (100ms)
-  assertGreater(elapsed, 45);
+  // Should use driver creation delay (TEST_DELAY_MS), not write request delay (100ms)
+  assertGreater(elapsed, DELAY_TOLERANCE_LOWER_MS);
   assertLess(elapsed, 75);
 });
