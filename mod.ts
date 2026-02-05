@@ -248,52 +248,72 @@ export interface RateLimitMiddlewareOptions {
  * await spokeClient.GET("/plans/123"); // Delayed by 200 ms
  * ```
  */
+type RateLimitRule = {
+  qualifier: (request: Request) => boolean;
+  lastRequestTime: number;
+  queue: Promise<void>;
+  delay: number;
+};
+
 export function createRateLimitMiddleware(
   options?: RateLimitMiddlewareOptions,
 ): Middleware {
   const rules = [
     {
       qualifier: isDriverCreationRequest,
+      lastRequestTime: 0,
       queue: Promise.resolve(),
       delay: options?.driverCreationDelay ?? 1_000,
     },
     {
       qualifier: isBatchImportStopsRequest,
+      lastRequestTime: 0,
       queue: Promise.resolve(),
       delay: options?.batchImportStopsDelay ?? 6_000,
     },
     {
       qualifier: isBatchImportDriversRequest,
+      lastRequestTime: 0,
       queue: Promise.resolve(),
       delay: options?.batchImportDriversDelay ?? 30_000,
     },
     {
       qualifier: isPlanOptimizationRequest,
+      lastRequestTime: 0,
       queue: Promise.resolve(),
       delay: options?.planOptimizationDelay ?? 20_000,
     },
     {
       qualifier: isWriteRequest,
+      lastRequestTime: 0,
       queue: Promise.resolve(),
       delay: options?.writeRequestDelay ?? 200,
     },
     {
       qualifier: (request) => request.method === "GET",
+      lastRequestTime: 0,
       queue: Promise.resolve(),
       delay: options?.readRequestDelay ?? 100,
     },
-  ] satisfies {
-    qualifier: (request: Request) => boolean;
-    queue: Promise<void>;
-    delay: number;
-  }[];
+  ] satisfies RateLimitRule[];
   return {
     async onRequest({ request }) {
       const rule = rules.find((r) => r.qualifier(request));
       // Assume all other requests are not rate-limited
       if (!rule) return request;
 
-      rule.queue = rule.queue.then(() => wait(rule.delay));
+      // Use a promise chain to serialize access and prevent race conditions
+      rule.queue = rule.queue.then(async () => {
+        const delayNeeded = Math.max(
+          0,
+          rule.lastRequestTime + rule.delay - Date.now(),
+        );
+
+        if (delayNeeded > 0) {
+          await wait(delayNeeded);
+        }
+        rule.lastRequestTime = Date.now();
+      });
       await rule.queue;
       return request;
     },
