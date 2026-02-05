@@ -304,9 +304,10 @@ export function createRateLimitMiddleware(
 
       // Use a promise chain to serialize access and prevent race conditions
       rule.queue = rule.queue.then(async () => {
-        const now = Date.now();
-        const timeSinceLastRequest = now - rule.lastRequestTime;
-        const delayNeeded = Math.max(0, rule.delay - timeSinceLastRequest);
+        const delayNeeded = Math.max(
+          0,
+          rule.lastRequestTime + rule.delay - Date.now(),
+        );
 
         if (delayNeeded > 0) {
           await wait(delayNeeded);
