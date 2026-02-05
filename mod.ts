@@ -248,6 +248,13 @@ export interface RateLimitMiddlewareOptions {
  * await spokeClient.GET("/plans/123"); // Delayed by 200 ms
  * ```
  */
+type RateLimitRule = {
+  qualifier: (request: Request) => boolean;
+  lastRequestTime: number;
+  queue: Promise<void>;
+  delay: number;
+};
+
 export function createRateLimitMiddleware(
   options?: RateLimitMiddlewareOptions,
 ): Middleware {
@@ -288,12 +295,7 @@ export function createRateLimitMiddleware(
       queue: Promise.resolve(),
       delay: options?.readRequestDelay ?? 100,
     },
-  ] satisfies {
-    qualifier: (request: Request) => boolean;
-    lastRequestTime: number;
-    queue: Promise<void>;
-    delay: number;
-  }[];
+  ] satisfies RateLimitRule[];
   return {
     async onRequest({ request }) {
       const rule = rules.find((r) => r.qualifier(request));
