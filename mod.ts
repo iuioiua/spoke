@@ -1,7 +1,17 @@
-import createClient from "openapi-fetch";
+import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./types.d.ts";
+import {
+  BASE_PATH,
+  isBatchImportDriversRequest,
+  isBatchImportStopsRequest,
+  isDriverCreationRequest,
+  isPlanOptimizationRequest,
+  isWriteRequest,
+} from "./_qualifiers.ts";
 
 export * from "./types.d.ts";
+
+const BASE_ORIGIN = "https://api.getcircuit.com";
 
 /**
  * Create a Spoke REST API client.
@@ -27,7 +37,7 @@ export function createSpokeClient(
   apiKey: string,
 ): ReturnType<typeof createClient<paths>> {
   const spokeClient = createClient<paths>({
-    baseUrl: "https://api.getcircuit.com/public/v0.2b",
+    baseUrl: BASE_ORIGIN + BASE_PATH,
   });
   spokeClient.use({
     onRequest({ request }) {
@@ -36,4 +46,253 @@ export function createSpokeClient(
     },
   });
   return spokeClient;
+}
+
+function wait(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+type RateLimitRule = {
+  qualifier: (request: Request) => boolean;
+  lastRequestTime: number;
+  queue: Promise<void>;
+  delay: number;
+};
+
+/**
+ * Options for {@linkcode createRateLimitMiddleware}.
+ */
+export interface RateLimitMiddlewareOptions {
+  /**
+   * How long to delay driver creation requests (`POST /drivers`) in milliseconds.
+   *
+   * Default is 1,000 ms (1 request per second).
+   *
+   * @default {1000}
+   *
+   * @example Usage
+   * ```ts
+   * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+   *
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ driverCreationDelay: 2_000 }));
+   *
+   * // Driver creation requests will be delayed by 2 seconds
+   * await spokeClient.POST("/drivers", { /* ... *\/ });
+   * ```
+   */
+  driverCreationDelay?: number;
+  /**
+   * How long to delay batch import stops requests
+   * (`POST /plans/:planId/stops:import` and `POST /unassignedStops:import`)
+   * in milliseconds.
+   *
+   * Default is 6,000 ms (10 requests per minute).
+   *
+   * @default {6000}
+   *
+   * @example Usage
+   * ```ts
+   * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+   *
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ batchImportStopsDelay: 10_000 }));
+   *
+   * // Batch import stops requests will be delayed by 10 seconds
+   * await spokeClient.POST("/plans/123/stops:import", { /* ... *\/ });
+   * ```
+   */
+  batchImportStopsDelay?: number;
+  /**
+   * How long to delay batch import drivers requests (`POST /drivers:import`) in
+   * milliseconds.
+   *
+   * Default is 30,000 ms (2 requests per minute).
+   *
+   * @default {30000}
+   *
+   * @example Usage
+   * ```ts
+   * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+   *
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ batchImportDriversDelay: 60_000 }));
+   *
+   * // Batch import drivers requests will be delayed by 60 seconds
+   * await spokeClient.POST("/drivers:import", { /* ... *\/ });
+   * ```
+   */
+  batchImportDriversDelay?: number;
+  /**
+   * How long to delay plan optimization requests
+   * (`POST /plans/:planId:optimize` and `POST /plans/:planId:reoptimize`) in
+   * milliseconds.
+   *
+   * Default is 20,000 ms (3 requests per minute).
+   *
+   * @default {20000}
+   *
+   * @example Usage
+   * ```ts
+   * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+   *
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ planOptimizationDelay: 40_000 }));
+   *
+   * // Plan optimization requests will be delayed by 40 seconds
+   * await spokeClient.POST("/plans/123:optimize", { /* ... *\/ });
+   * ```
+   */
+  planOptimizationDelay?: number;
+  /**
+   * How long to delay write requests (`POST`, `PATCH`, `DELETE`) in milliseconds.
+   *
+   * Default is 200 ms (5 requests per second).
+   *
+   * @default {200}
+   *
+   * @example Usage
+   * ```ts
+   * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+   *
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ writeRequestDelay: 500 }));
+   *
+   * // Write requests will be delayed by 500 ms
+   * await spokeClient.POST("/plans", { /* ... *\/ });
+   * ```
+   */
+  writeRequestDelay?: number;
+  /**
+   * How long to delay read requests (`GET`) in milliseconds.
+   *
+   * Default is 100 ms (10 requests per second).
+   *
+   * @default {100}
+   *
+   * @example Usage
+   * ```ts
+   * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+   *
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ readRequestDelay: 200 }));
+   *
+   * // Read requests will be delayed by 200 ms
+   * await spokeClient.GET("/plans");
+   * ```
+   */
+  readRequestDelay?: number;
+}
+
+/**
+ * Creates a middleware that applies rate limits to Spoke API requests based on
+ * endpoint and method.
+ *
+ * @param options Options for the rate-limit middleware
+ * @returns Middleware that applies rate limits to Spoke API requests based on
+ * endpoint and method.
+ *
+ * @example Usage with default delays
+ * ```ts
+ * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+ *
+ * const spokeClient = createSpokeClient("your_spoke_api_key");
+ * spokeClient.use(createRateLimitMiddleware());
+ *
+ * // Requests will be delayed according to default rules
+ * await spokeClient.POST("/drivers", { /* ... *\/ }); // Delayed by 1 second
+ * await spokeClient.POST("/plans/123/stops:import", { /* ... *\/ }); // Delayed by 6 seconds
+ * await spokeClient.POST("/drivers:import", { /* ... *\/ }); // Delayed by 30 seconds
+ * await spokeClient.POST("/plans/123:optimize", { /* ... *\/ }); // Delayed by 20 seconds
+ * await spokeClient.PATCH("/plans/123", { /* ... *\/ }); // Delayed by 200 ms
+ * await spokeClient.GET("/plans/123"); // Delayed by 100 ms
+ * ```
+ *
+ * @example Usage with custom delays
+ * ```ts
+ * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
+ *
+ * const spokeClient = createSpokeClient("your_spoke_api_key");
+ * spokeClient.use(createRateLimitMiddleware({
+ *   driverCreationDelay: 2_000,
+ *   batchImportStopsDelay: 10_000,
+ *   batchImportDriversDelay: 60_000,
+ *   planOptimizationDelay: 40_000,
+ *   writeRequestDelay: 500,
+ *   readRequestDelay: 200,
+ * }));
+ *
+ * // Requests will be delayed according to custom rules
+ * await spokeClient.POST("/drivers", { /* ... *\/ }); // Delayed by 2 seconds
+ * await spokeClient.POST("/plans/123/stops:import", { /* ... *\/ }); // Delayed by 10 seconds
+ * await spokeClient.POST("/drivers:import", { /* ... *\/ }); // Delayed by 60 seconds
+ * await spokeClient.POST("/plans/123:optimize", { /* ... *\/ }); // Delayed by 40 seconds
+ * await spokeClient.PATCH("/plans/123", { /* ... *\/ }); // Delayed by 500 ms
+ * await spokeClient.GET("/plans/123"); // Delayed by 200 ms
+ * ```
+ */
+export function createRateLimitMiddleware(
+  options?: RateLimitMiddlewareOptions,
+): Middleware {
+  // Rules are ordered in decreasing specificity to ensure correct matching
+  const rules = [
+    {
+      qualifier: isDriverCreationRequest,
+      lastRequestTime: 0,
+      queue: Promise.resolve(),
+      delay: options?.driverCreationDelay ?? 1_000,
+    },
+    {
+      qualifier: isBatchImportStopsRequest,
+      lastRequestTime: 0,
+      queue: Promise.resolve(),
+      delay: options?.batchImportStopsDelay ?? 6_000,
+    },
+    {
+      qualifier: isBatchImportDriversRequest,
+      lastRequestTime: 0,
+      queue: Promise.resolve(),
+      delay: options?.batchImportDriversDelay ?? 30_000,
+    },
+    {
+      qualifier: isPlanOptimizationRequest,
+      lastRequestTime: 0,
+      queue: Promise.resolve(),
+      delay: options?.planOptimizationDelay ?? 20_000,
+    },
+    {
+      qualifier: isWriteRequest,
+      lastRequestTime: 0,
+      queue: Promise.resolve(),
+      delay: options?.writeRequestDelay ?? 200,
+    },
+    {
+      qualifier: (request) => request.method === "GET",
+      lastRequestTime: 0,
+      queue: Promise.resolve(),
+      delay: options?.readRequestDelay ?? 100,
+    },
+  ] satisfies RateLimitRule[];
+  return {
+    async onRequest({ request }) {
+      const rule = rules.find((r) => r.qualifier(request));
+      // Assume all other requests are not rate-limited
+      if (!rule) return request;
+
+      // Use a promise chain to serialize access and prevent race conditions
+      rule.queue = rule.queue.then(async () => {
+        const delayNeeded = Math.max(
+          0,
+          rule.lastRequestTime + rule.delay - Date.now(),
+        );
+
+        if (delayNeeded > 0) {
+          await wait(delayNeeded);
+        }
+        rule.lastRequestTime = Date.now();
+      });
+      await rule.queue;
+      return request;
+    },
+  };
 }
