@@ -1,6 +1,7 @@
 import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./types.d.ts";
 import {
+  BASE_PATH,
   isBatchImportDriversRequest,
   isBatchImportStopsRequest,
   isDriverCreationRequest,
@@ -11,7 +12,6 @@ import {
 export * from "./types.d.ts";
 
 const BASE_ORIGIN = "https://api.getcircuit.com";
-const BASE_PATH = "/public/v0.2b";
 
 /**
  * Create a Spoke REST API client.
@@ -234,6 +234,7 @@ export interface RateLimitMiddlewareOptions {
 export function createRateLimitMiddleware(
   options?: RateLimitMiddlewareOptions,
 ): Middleware {
+  // Rules are ordered in decreasing specificity to ensure correct matching
   const rules = [
     {
       qualifier: isDriverCreationRequest,
