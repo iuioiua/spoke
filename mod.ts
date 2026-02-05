@@ -309,7 +309,7 @@ export function createRateLimitMiddleware(
         if (delayNeeded > 0) {
           await wait(delayNeeded);
         }
-        rule.lastRequestTime = now + delayNeeded;
+        rule.lastRequestTime = Date.now();
       });
       await rule.queue;
       return request;
