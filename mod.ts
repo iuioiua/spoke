@@ -52,6 +52,13 @@ function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+type RateLimitRule = {
+  qualifier: (request: Request) => boolean;
+  lastRequestTime: number;
+  queue: Promise<void>;
+  delay: number;
+};
+
 /**
  * Options for {@linkcode createRateLimitMiddleware}.
  */
@@ -224,13 +231,6 @@ export interface RateLimitMiddlewareOptions {
  * await spokeClient.GET("/plans/123"); // Delayed by 200 ms
  * ```
  */
-type RateLimitRule = {
-  qualifier: (request: Request) => boolean;
-  lastRequestTime: number;
-  queue: Promise<void>;
-  delay: number;
-};
-
 export function createRateLimitMiddleware(
   options?: RateLimitMiddlewareOptions,
 ): Middleware {
