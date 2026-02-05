@@ -254,37 +254,37 @@ export function createRateLimitMiddleware(
   const rules = [
     {
       qualifier: isDriverCreationRequest,
-      queue: Promise.resolve(),
+      lastRequestTime: 0,
       delay: options?.driverCreationDelay ?? 1_000,
     },
     {
       qualifier: isBatchImportStopsRequest,
-      queue: Promise.resolve(),
+      lastRequestTime: 0,
       delay: options?.batchImportStopsDelay ?? 6_000,
     },
     {
       qualifier: isBatchImportDriversRequest,
-      queue: Promise.resolve(),
+      lastRequestTime: 0,
       delay: options?.batchImportDriversDelay ?? 30_000,
     },
     {
       qualifier: isPlanOptimizationRequest,
-      queue: Promise.resolve(),
+      lastRequestTime: 0,
       delay: options?.planOptimizationDelay ?? 20_000,
     },
     {
       qualifier: isWriteRequest,
-      queue: Promise.resolve(),
+      lastRequestTime: 0,
       delay: options?.writeRequestDelay ?? 200,
     },
     {
       qualifier: (request) => request.method === "GET",
-      queue: Promise.resolve(),
+      lastRequestTime: 0,
       delay: options?.readRequestDelay ?? 100,
     },
   ] satisfies {
     qualifier: (request: Request) => boolean;
-    queue: Promise<void>;
+    lastRequestTime: number;
     delay: number;
   }[];
   return {
@@ -293,8 +293,14 @@ export function createRateLimitMiddleware(
       // Assume all other requests are not rate-limited
       if (!rule) return request;
 
-      rule.queue = rule.queue.then(() => wait(rule.delay));
-      await rule.queue;
+      const now = Date.now();
+      const timeSinceLastRequest = now - rule.lastRequestTime;
+      const delayNeeded = Math.max(0, rule.delay - timeSinceLastRequest);
+
+      if (delayNeeded > 0) {
+        await wait(delayNeeded);
+      }
+      rule.lastRequestTime = Date.now();
       return request;
     },
   };
