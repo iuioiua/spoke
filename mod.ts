@@ -1,5 +1,12 @@
 import createClient, { type Middleware } from "openapi-fetch";
 import type { paths } from "./types.d.ts";
+import {
+  isBatchImportDriversRequest,
+  isBatchImportStopsRequest,
+  isDriverCreationRequest,
+  isPlanOptimizationRequest,
+  isWriteRequest,
+} from "./_qualifiers.ts";
 
 export * from "./types.d.ts";
 
@@ -43,37 +50,6 @@ export function createSpokeClient(
 
 function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-function pathMatches(url: string, pathname: string): boolean {
-  return new URLPattern({ pathname: BASE_PATH + pathname }).test(url);
-}
-
-function isDriverCreationRequest(request: Request): boolean {
-  return pathMatches(request.url, "/drivers") &&
-    request.method === "POST";
-}
-
-function isBatchImportStopsRequest(request: Request): boolean {
-  return pathMatches(
-    request.url,
-    "(/plans/:planId/stops|/unassignedStops)\\:import",
-  ) &&
-    request.method === "POST";
-}
-
-function isBatchImportDriversRequest(request: Request): boolean {
-  return pathMatches(request.url, "/drivers\\:import") &&
-    request.method === "POST";
-}
-
-function isPlanOptimizationRequest(request: Request): boolean {
-  return pathMatches(request.url, "/plans/:planId\\:(optimize|reoptimize)") &&
-    request.method === "POST";
-}
-
-function isWriteRequest(request: Request): boolean {
-  return ["POST", "PATCH", "DELETE"].includes(request.method);
 }
 
 /**
