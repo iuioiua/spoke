@@ -91,9 +91,8 @@ export interface RateLimitMiddlewareOptions {
    * ```ts
    * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
    *
-   * const spokeClient = createSpokeClient("your_spoke_api_key", {
-   *   middleware: [createRateLimitMiddleware({ driverCreationDelay: 2_000 })],
-   * });
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ driverCreationDelay: 2_000 }));
    *
    * // Driver creation requests will be delayed by 2 seconds
    * await spokeClient.POST("/drivers", { /* ... *\/ });
@@ -113,9 +112,8 @@ export interface RateLimitMiddlewareOptions {
    * ```ts
    * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
    *
-   * const spokeClient = createSpokeClient("your_spoke_api_key", {
-   *   middleware: [createRateLimitMiddleware({ batchImportStopsDelay: 10_000 })],
-   * });
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ batchImportStopsDelay: 10_000 }));
    *
    * // Batch import stops requests will be delayed by 10 seconds
    * await spokeClient.POST("/plans/123/stops:import", { /* ... *\/ });
@@ -134,9 +132,8 @@ export interface RateLimitMiddlewareOptions {
    * ```ts
    * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
    *
-   * const spokeClient = createSpokeClient("your_spoke_api_key", {
-   *   middleware: [createRateLimitMiddleware({ batchImportDriversDelay: 60_000 })],
-   * });
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ batchImportDriversDelay: 60_000 }));
    *
    * // Batch import drivers requests will be delayed by 60 seconds
    * await spokeClient.POST("/drivers:import", { /* ... *\/ });
@@ -156,9 +153,8 @@ export interface RateLimitMiddlewareOptions {
    * ```ts
    * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
    *
-   * const spokeClient = createSpokeClient("your_spoke_api_key", {
-   *   middleware: [createRateLimitMiddleware({ planOptimizationDelay: 40_000 })],
-   * });
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ planOptimizationDelay: 40_000 }));
    *
    * // Plan optimization requests will be delayed by 40 seconds
    * await spokeClient.POST("/plans/123:optimize", { /* ... *\/ });
@@ -176,9 +172,8 @@ export interface RateLimitMiddlewareOptions {
    * ```ts
    * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
    *
-   * const spokeClient = createSpokeClient("your_spoke_api_key", {
-   *   middleware: [createRateLimitMiddleware({ writeRequestDelay: 500 })],
-   * });
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ writeRequestDelay: 500 }));
    *
    * // Write requests will be delayed by 500 ms
    * await spokeClient.POST("/plans", { /* ... *\/ });
@@ -196,9 +191,8 @@ export interface RateLimitMiddlewareOptions {
    * ```ts
    * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
    *
-   * const spokeClient = createSpokeClient("your_spoke_api_key", {
-   *   middleware: [createRateLimitMiddleware({ readRequestDelay: 200 })],
-   * });
+   * const spokeClient = createSpokeClient("your_spoke_api_key");
+   * spokeClient.use(createRateLimitMiddleware({ readRequestDelay: 200 }));
    *
    * // Read requests will be delayed by 200 ms
    * await spokeClient.GET("/plans");
@@ -219,9 +213,8 @@ export interface RateLimitMiddlewareOptions {
  * ```ts
  * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
  *
- * const spokeClient = createSpokeClient("your_spoke_api_key", {
- *   middleware: [createRateLimitMiddleware()],
- * });
+ * const spokeClient = createSpokeClient("your_spoke_api_key");
+ * spokeClient.use(createRateLimitMiddleware());
  *
  * // Requests will be delayed according to default rules
  * await spokeClient.POST("/drivers", { /* ... *\/ }); // Delayed by 1 second
@@ -236,16 +229,15 @@ export interface RateLimitMiddlewareOptions {
  * ```ts
  * import { createSpokeClient, createRateLimitMiddleware } from "@iuioiua/spoke";
  *
- * const spokeClient = createSpokeClient("your_spoke_api_key", {
- *   middleware: [createRateLimitMiddleware({
- *     driverCreationDelay: 2_000,
- *     batchImportStopsDelay: 10_000,
- *     batchImportDriversDelay: 60_000,
- *     planOptimizationDelay: 40_000,
- *     writeRequestDelay: 500,
- *     readRequestDelay: 200,
- *   })],
- * });
+ * const spokeClient = createSpokeClient("your_spoke_api_key");
+ * spokeClient.use(createRateLimitMiddleware({
+ *   driverCreationDelay: 2_000,
+ *   batchImportStopsDelay: 10_000,
+ *   batchImportDriversDelay: 60_000,
+ *   planOptimizationDelay: 40_000,
+ *   writeRequestDelay: 500,
+ *   readRequestDelay: 200,
+ * }));
  *
  * // Requests will be delayed according to custom rules
  * await spokeClient.POST("/drivers", { /* ... *\/ }); // Delayed by 2 seconds
