@@ -7,8 +7,8 @@ Minimal client for the [Spoke REST API](https://developer.dispatch.spoke.com)
 with types. Powered by [`openapi-fetch`](https://openapi-ts.dev/openapi-fetch/).
 Compatible with all JavaScript/TypeScript runtimes and browsers.
 
-```ts
-import { createSpokeClient } from "@iuioiua/spoke";
+```ts ignore
+import { createSpokeClient } from "@incapost/spoke";
 
 const spokeClient = createSpokeClient("your_spoke_api_key");
 
